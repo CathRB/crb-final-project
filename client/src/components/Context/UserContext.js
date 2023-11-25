@@ -1,8 +1,8 @@
 //To Do: catch error
 
 
-import {createContext} from "react";
-import {useEffect, useState} from "react";
+import {createContext, useEffect, useState} from "react";
+
 
 export const UserContext =  createContext(null);
 

@@ -5,4 +5,5 @@ import { GardenProvider } from "./components/Context/GardenContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<UserProvider> <GardenProvider> <App/> </GardenProvider> </UserProvider>)
+root.render(<App/>)
+//root.render(<UserProvider> <GardenProvider> <App/> </GardenProvider> </UserProvider>)

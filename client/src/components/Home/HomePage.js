@@ -1,4 +1,7 @@
 import {useState, useEffect} from "react"
+import {
+
+  } from "./styledHome"
 
 const HomePage = () => {
 
@@ -14,7 +17,7 @@ console.log(people)
     if(!people) return <h1>Loading...</h1> */
 
     return (
-        <>
+        <main>
         <h1>Welcom to My Garden</h1>
 
         <main>
@@ -36,7 +39,7 @@ console.log(people)
             </div>
         </main>
     <footer>This is a footer (with redirecting link?)</footer>
-        </>
+        </main>
     )
 }
 

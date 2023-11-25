@@ -1,38 +1,85 @@
-const express = require("express");
-const {MongoClient} = require("mongodb");
-require("dotenv").config();
-const {MONGO_URI} = process.env;
+"use strict";
+const express = require('express');
+const morgan = require("morgan");
+const helmet = require("helmet");
 
-console.log("test", {MONGO_URI} )
+const {getPlants} = require("./handlers/getPlants");
+const {getPlantInfo} = require("./handlers/getPlantInfo");
+const {getPlantsPages} = require ("./handlers/getPlantsPages");
+const {addUser} = require ("./handlers/addUser")
+const {getUserInfo} = require ("./handlers/getUserInfo")
 
-const PORT = 8000;
+express()
+  .use(express.json())
+  .use(helmet())
+  .use(morgan("tiny"))
+  .use(express.static("public"))
 
-const mongoOptions = {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-}
-const app = express()
+  //Plant Brwoser
+    .get("/api/get-plants/:plantName", getPlants)
+    .get("/api/get-plantInfo/:plantSlug", getPlantInfo)
+    .get("/api/get-plantsPages/:pageNumber/:plantName", getPlantsPages)
+    
 
-app.get("/api/test", (request, response) => {
-    response.json({message: "You hit the end point!"})
-})
+  //Regsiter and Log in
+    .post("/api/add-user", addUser)
+    .post("/api/get-userInfo/", getUserInfo)
 
-app.get("/api/people", async (request, response) => {
- const client = new MongoClient(MONGO_URI, mongoOptions);
- try {
-    await client.connect()
-    const result = await client.db("final-project").collection("people").find().toArray()
-response.json(result) 
+    .listen(8000, () => {
+        console.log(`Server listening on port ${8000}`)
+    });
 
-}
- catch (error){
-    console.log(error);
-    response.status(400).json({message: "something went wrong"})
 
- }
- finally {
-    client.close()
- }
-})
 
-app.listen(PORT);
+
+/*  //Plant Brwoser
+ .get("api/get-plants/:plantName", getPlants)
+ .get("api/get-plantInfo/:plantSlug", getPlantInfo)
+ .get("api/get-plantsPages/:pageNumber/:plantName", getPlantsPages)
+ 
+
+//Add new user
+ .post("api/add-user", createUser)
+
+ .listen(8000, () => {
+     console.log(`Server listening on port ${8000}`)
+ });
+ */
+
+
+//FONCTIONNE
+ //Plant Brwoser
+ /* .get("/plants/:plantName", getPlants)
+ .get("/plant/:plantSlug", getPlantInfo)
+ .get("/plants/:pageNumber/:plantName", getPlantsPages)
+ 
+
+//Add new user
+ .post("/user/:userID", createUser)
+
+ .listen(8000, () => {
+     console.log(`Server listening on port ${8000}`)
+ }); */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

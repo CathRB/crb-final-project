@@ -1,6 +1,9 @@
-import {BrowserRouter, Routes, Route, Link} from "react-router-dom"
-import {useEffect} from "react"
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 import HomePage from "./Home/HomePage";
+import Plants from "./PlantsBrowser/Plants"
+import Header from "./Header/Header";
+import RegisterPage from "./Register/RegisterPage";
+import LoginPage from "./Login/LoginPage"
 
 const App = () => {
 /* useEffect(() => {
@@ -10,19 +13,13 @@ fetch("/api/testMongo")
 }, []) */
 return(
     <BrowserRouter>
-    <nav>
-        <ul>
-            <Link to="/">Home</Link>
-            <Link to="/plantBrowser">Plant Browser</Link>
-            <Link to="/myGarden">My Garden</Link>
-            <Link to="/Log in">Log in</Link>
-            <Link to="/Sing in">Sing in</Link>
-            <p>🪴 "Name" Garden 🪴</p>
-        </ul>
-    </nav>
+        <Header/>
     <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/myGarden" element={<h1>My Garden</h1>}/>
+        <Route path="/plants" element={<Plants/>}/>
+        <Route path="/register" element={<RegisterPage/>}/>
+        <Route path="/LogIn" element={<LoginPage/>}/>
     </Routes>
     </BrowserRouter>
 )
