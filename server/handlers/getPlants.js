@@ -8,13 +8,13 @@ const getPlants = async (request, response) => {
  const plantName = request.params.plantName;
 
   try {
-  const plantsResponse = await fetch(`https://trefle.io/api/v1/plants/search?token=${key}&q=${plantName}`);
-  const data = await  plantsResponse.json();  
-     if (data.data.length === 0)
+  const getPlants = await fetch(`https://trefle.io/api/v1/plants/search?token=${key}&q=${plantName}`);
+  const plants = await  getPlants.json();  
+     if (plants.data.length === 0)
     return response.status(404).json({status: 404, message:`${plantName} not found, please try something else`});
 
      else 
-    return response.status(200).json({status: 200, plantsData: data.data, plantsMeta: data.meta, message: "Plant found"});
+    return response.status(200).json({status: 200, data: plants.data, dataMeta: plants.meta, message: "Plant found"});
     
   }catch (error) {
         console.error("Error:", error.stack);

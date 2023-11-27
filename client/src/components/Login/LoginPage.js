@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from "../Context/UserContext";
 import {
     Title, Form, Container, Label, Input, Button  
 } from "./styledLogin"
@@ -13,7 +14,7 @@ const LoginPage = () => {
     const [logInfo, setLogInfo] = useState({});
     const [sending, setSending] = useState(false);
     const [errorMessage, setErrorMessage]=useState(null)
-
+    const { setUser } = useContext(UserContext);
 
     const handleChange = (key, value) => {
         setLogInfo({
@@ -22,7 +23,7 @@ const LoginPage = () => {
         });
       };
 
-   const handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         setSending(true);
         event.preventDefault();
     
@@ -36,7 +37,9 @@ const LoginPage = () => {
         })
           .then((response) => response.json())
           .then((response) => {
-            if (response.status === 200) {
+             if (response.status === 200) {
+              setUser(response.data);
+              sessionStorage.setItem('user', response.data._id)
               navigate(`/myGarden`);
             } else setErrorMessage(response.message);
           })
@@ -47,6 +50,9 @@ const LoginPage = () => {
             setSending(false);
           });
       }; 
+
+   
+
 
 return (
 <>

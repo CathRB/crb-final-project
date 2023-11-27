@@ -11,13 +11,13 @@
   const pageNumber = request.params.pageNumber;
    
    try {
-   const plantInfoResponse = await fetch(`https://trefle.io/api/v1/plants/search?token=${key}&page=${pageNumber}&q=${plantName}`);
-   const data = await  plantInfoResponse.json();  
+   const getPlantsPages = await fetch(`https://trefle.io/api/v1/plants/search?token=${key}&page=${pageNumber}&q=${plantName}`);
+   const plantsPages = await  getPlantsPages.json();  
 
-     if (data.error)
+     if (plantsPages.error)
      return response.status(404).json({status: 404, message:`Page ${pageNumber} not found`});
  
-         return response.status(200).json({status: 200, plantsPages: data.data,  message: "Plant found"});
+         return response.status(200).json({status: 200, data: plantsPages.data,  message: "Plant found"});
      
    }catch (error) {
          console.error("Error:", error.stack);

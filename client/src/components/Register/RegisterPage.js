@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from "../Context/UserContext";
 import {
     Background, Title, Form, Container, Label, Input, Button  
 } from "./styledRegister"
@@ -13,6 +14,7 @@ const RegisterPage = () => {
     const [registerInfo, setRegsiterInfo] = useState({});
     const [sending, setSending] = useState(false);
     const [errorMessage, setErrorMessage]=useState(null)
+    const {setUser} = useContext(UserContext)
 
 
     const handleChange = (key, value) => {
@@ -37,6 +39,8 @@ const RegisterPage = () => {
           .then((response) => response.json())
           .then((response) => {
             if (response.status === 201) {
+              setUser(response.data)
+              sessionStorage.setItem('user', response.data._id)
               navigate(`/myGarden`);
             } else setErrorMessage(response.message);
           })
