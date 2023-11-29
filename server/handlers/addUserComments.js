@@ -9,12 +9,13 @@ const { MONGO_URI } = process.env;
 const addUserComments = async (request, response) => {
     const {userId, myGardenId , plantLocation, sunExposition, wateringFrequency,  lastWatering, fertilizerName, fertilizerFrequency, lastFertilizing,  comments} = request.body;
     const client = new MongoClient(MONGO_URI);
+    
 
     try {
         await client.connect();
         const usersDatabase = client.db("projectMyGarden");
      
-        const addPlant = await usersDatabase.collection("users").updateOne({_id: userId, "myGarden.myGardenId": myGardenId}, {$set:  {"myGarden.$.plantLocation": plantLocation, "myGarden.$.sunExposition": sunExposition, "myGarden.$.wateringFrequency": wateringFrequency, "myGarden.$.fertilizerName": fertilizerName, "myGarden.$.fertilizerFrequency": fertilizerFrequency, "myGarden.$.comments": comments}} );
+        const addPlant = await usersDatabase.collection("users").updateOne({_id: userId, "myGarden.myGardenId": myGardenId}, {$set:  {"myGarden.$.plantLocation": plantLocation, "myGarden.$.sunExposition": sunExposition, "myGarden.$.wateringFrequency": wateringFrequency, "myGarden.$.lastWatering": lastWatering, "myGarden.$.fertilizerName": fertilizerName, "myGarden.$.fertilizerFrequency": fertilizerFrequency, "myGarden.$.lastFertilizing": lastFertilizing, "myGarden.$.comments": comments}} );
         
      
 

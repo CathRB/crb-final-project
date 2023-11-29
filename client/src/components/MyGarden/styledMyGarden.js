@@ -9,6 +9,9 @@ margin-top: 15px;
 
 h1{
   text-align: center;
+  font-size: 26px;
+   font-style: bold;
+
 }
 `;
 
@@ -19,6 +22,8 @@ export const DivGrid = styled.div`
   grid-template-columns: 1fr 1fr ;
   max-width: fit-content;
   margin: 0 auto 25px auto;
+
+ 
   
   
   @media (max-width: 1200px) {

@@ -8,7 +8,7 @@ const {MONGO_URI} = process.env;
 
 const getUserInfoForSession = async (request, response) => {
 const {loggedInUser} = request.body;
-console.log("---", request.body)
+
 
 
  const client = new MongoClient(MONGO_URI);

@@ -22,8 +22,8 @@ const PlantsBrowser = () => {
   const { user, addToMyGarden } = useContext(UserContext);
   const navigate = useNavigate();
 
-  if(plantSlug)
-{console.log("plantSlug", plantSlug)}
+
+
 
   let addPlantData =
     user && plantInfo

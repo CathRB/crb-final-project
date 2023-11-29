@@ -42,6 +42,15 @@ const [previousPage, setPreviousPage] = useState(true);
 const [nextPage, setNextPage] = useState(true);
 const [pageNumber, setPageNumber] = useState(1);
 const [totalPages, setTotalPages] = useState(null);
+const [gardenId, setGardenId] = useState(null)
+
+const date = new Date()
+let dateMDY = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
+const test = new Date()
+let test2 = `${test.getFullYear()}-${test.getMonth() + 1}-${test.getDate()}`;
+
+
 
 
 const navigate = useNavigate()
@@ -52,6 +61,7 @@ const [open, setOpen] = useState(false);
 
 const handleClickOpen = () => {
   setOpen(true);
+
 };
 
 const handleClose = () => {
@@ -60,13 +70,11 @@ const handleClose = () => {
 
 
 
-   
-
   //Set pages
   useEffect(() => {
     if(user){
-     setTotalPages(Math.ceil(user.myGarden.length / 20));
-       if (user.myGarden.length  < 3) {
+     setTotalPages(Math.ceil(user.myGarden.length / 2));
+       if (user.myGarden.length  < 3 ) {
               setNextPage(true);
             } else {
               setNextPage(false);
@@ -85,9 +93,7 @@ const handleClose = () => {
   
         if (pageNumber === totalPages) {
           setNextPage(true);
-        } else {
-          setNextPage(false);
-        }
+        } 
       }
     }, [pageNumber]);
 
@@ -96,6 +102,7 @@ const handleClose = () => {
 
 //Remove a plant to user library
 const removePlant = (event) => {
+  console.log("test")
       
     event.preventDefault();
 
@@ -110,12 +117,13 @@ const removePlant = (event) => {
       .then((response) => response.json())
       .then((response) => {
         if (response.status === 200) {
-           removeFromMyGarden(plantToRemove.myGardenId);
+          console.log(response.message)
+          removeFromMyGarden(plantToRemove.myGardenId);
           navigate("/myGarden");
          } else setErrorMessage(response.message);
       })
       .catch((error) => {
-        setErrorMessage("Error during removing process", error);
+         setErrorMessage("Error during removing process", error);
       })
         } 
 
@@ -123,11 +131,12 @@ const removePlant = (event) => {
    return(
      
         <Main>
-       
+       {user? ( <></>
+           ): (<h1>Please log in or set an account to have acces to this feature</h1>) }
               <DivGrid>
             {user? (
-            user.myGarden.map ((plant) => {
-                          
+               user.myGarden.map ((plant) => {
+                
             return(
             <PlantBox key={plant.myGardenId}>
 
@@ -159,12 +168,12 @@ const removePlant = (event) => {
                 <p>Edible: unknown</p>
               ): plant.edible === false?(
                 <p>Edible: no</p>
-              ):( <p>Edible: {plant.edible}</p>
+              ):( <p>Edible: yes</p>
               )
               }
              
              {plant.edibleParts?(
-              <p>Edible Parts: {plant.edibleParts} </p>
+              <p>Edible Parts: {plant.edibleParts.toString("")} </p>
               ): <></>}
 
               {plant.sources? (
@@ -178,10 +187,14 @@ const removePlant = (event) => {
              ): <p>Distribution map: information not available</p> 
                 }
                 </GeneralBox>
-
+                  { Math.floor(( Date.parse(date) - Date.parse(plant.lastWatering))) < plant.wateringFrequency ?(
+                    
                 <TaskIcon src={waterDropOff} alt={"waterDropOff"} />
-                <TaskIcon src={fertiliserOff} alt={"fertiliserOff"} />
+                ):  <TaskIcon src={waterDropOn} alt={"waterDropOn"}/> }
 
+                {Math.floor(( Date.parse(date) - Date.parse(plant.lastFertilizing))) < plant.fertilizerFrequency ?(
+                <TaskIcon src={fertiliserOff} alt={"fertiliserOff"} />
+                ):  <TaskIcon src={fertiliserOn} alt={"fertiliserOn"}/> }
               </HeaderBox>
 
               <MiddleBox>
@@ -206,21 +219,23 @@ const removePlant = (event) => {
                             
               <MyCareBox>
               <h2>My care settings</h2>
-              <p>Location: </p>
-              <p>SunExposition: </p> 
-              <p>Watering frequency: </p>  
-              <p>Last watering: </p> 
-              <p>Fertilizer name: </p>
-              <p>Fertilizer frequency: </p>  
-              <p>Last fertilizing: </p> 
-              <p>Comments: </p>
+              <p>Location: {plant.plantLocation}</p>
+              <p>SunExposition: {plant.sunExposition} </p> 
+              <p>Watering frequency: each {plant.wateringFrequency} day(s)</p>  
+              <p>Last watering: {plant.lastWatering}</p> 
+              <p>Fertilizer name: {plant.fertilizerName}</p>
+              <p>Fertilizer frequency: each {plant.fertilizerFrequency} day(s)</p>  
+              <p>Last fertilizing: {plant.lastFertilizing}</p> 
+              <p>Comments: {plant.comments}</p>
               </MyCareBox>
               </MiddleBox>
 
               <BottomBox>
-                <SettingsButton onClick={handleClickOpen}>Add my personal settings</SettingsButton>
-                 <MySettingsModal open={open} handleClickOpen= {handleClickOpen}  handleClose={handleClose}></MySettingsModal>
-              <GarbageButton style={{ display: removeButton }}onClick={() => {setPlantToRemove({userId: user._id, myGardenId: plant.myGardenId}); setRemoveButton("none"); setYesNoButton("")}}><img src={rubbish} alt={"trash"}/></GarbageButton>
+                {plant.plantLocation || plant.sunExposition || plant.wateringFrequency || plant.lastWatering || plant.fertilizerName || plant.fertilizerFrequency || plant.lastFertilizing || plant.comments? (
+                <SettingsButton onClick={()=>{handleClickOpen(); setGardenId(plant.myGardenId)}}>Change my personal settings</SettingsButton>
+             ): (<SettingsButton  onClick={()=>{handleClickOpen(); setGardenId(plant.myGardenId)}}>Add my personal settings</SettingsButton>)}
+                          <MySettingsModal open={open}  handleClose={handleClose} userId={user._id} myGardenId={gardenId} setErrorMessage={setErrorMessage}>   </MySettingsModal>
+              <GarbageButton style={{ display: removeButton }}onClick={() => {setPlantToRemove({userId: user._id}); setRemoveButton("none"); setYesNoButton("")}}><img src={rubbish} alt={"trash"}/></GarbageButton>
                <p style={{ display: yesNoButton }} >Are you sure you want to remove this plant from your garden?</p>
               <button style={{ display: yesNoButton }} onClick={(event) => removePlant(event)}>Yes</button>
               <button style={{ display: yesNoButton }} onClick={() => {setPlantToRemove(null); setRemoveButton(""); setYesNoButton("none")}}>Non</button>
@@ -228,7 +243,7 @@ const removePlant = (event) => {
             </PlantBox>
             )
             })
-            ): (<p>Please log in or set an account to have acces to this feature</p>) }
+            ): (<></>) }
 
             {errorMessage?(
               <p> {errorMessage} </p>
@@ -236,30 +251,27 @@ const removePlant = (event) => {
             }
 
             </DivGrid>
-
+            {user?(
             <Footer>
+              
+                <button
+                disabled={previousPage}
+                onClick={() => {setPageNumber(pageNumber - 1);
+                 }}>
+                 Previous Page
+                </button>
+                <p>{pageNumber}</p>
+                <button
+                disabled={nextPage}
+                onClick={() => {setPageNumber(pageNumber + 1);
+                 }}>
+                 Next Page
+                </button>
+                
+              </Footer>
+              ): <></>}
 
-<button
-  disabled={previousPage}
-  onClick={() => {
-    setPageNumber(pageNumber - 1);
-  }}
->
-  Previous Page
-</button>
-<p>{pageNumber}</p>
-<button
-  disabled={nextPage}
-  onClick={() => {
-    setPageNumber(pageNumber + 1);
-  }}
->
-  Next Page
-</button>
-
-</Footer>
-
-
+           
 
 
             </Main>
