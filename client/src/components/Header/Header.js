@@ -23,12 +23,14 @@ const handleLogout = (event) => {
 }
     return(
         <NavBar>
-            {user?(
-            <p>🪴 {user.firstName} garden 🪴</p>
-            ):(<></>)}
-
+            
             <PathLink to="/">Home</PathLink>
             <PathLink to="/plants">Plant Browser</PathLink>
+            
+            {user?(
+            <p>🪴 {user.firstName}'s garden 🪴</p>
+            ):(<></>)}
+
             <PathLink to="/myGarden">My garden</PathLink>
            
             {user?(

@@ -16,10 +16,14 @@ const PlantsBrowser = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
   const [adding, setAdding] = useState(false);
+  const [scientificName, setScientificName] = useState(null)
  
 
   const { user, addToMyGarden } = useContext(UserContext);
   const navigate = useNavigate();
+
+  if(plantSlug)
+{console.log("plantSlug", plantSlug)}
 
   let addPlantData =
     user && plantInfo
@@ -27,6 +31,7 @@ const PlantsBrowser = () => {
           userId: user._id,
           plantId: plantInfo.plantId,
           commonName: plantInfo.commonName,
+          scientificName: scientificName,
           family: plantInfo.family,
           vegetable: plantInfo.vegetable,
           edible: plantInfo.edible,
@@ -161,6 +166,7 @@ const PlantsBrowser = () => {
                 key={plant.id}
                 onClick={() => {
                   setPlantSlug(plant.slug);
+                  setScientificName(plant.scientific_name)
                          }}
               >
                 {plant.common_name ? (
@@ -186,23 +192,23 @@ const PlantsBrowser = () => {
             {plantInfo.commonName ? (
               <p>{plantInfo.commonName}</p>
             ) : (
-              <p>Common name: not available </p>
+              <p>Common name not available </p>
             )}
             {plantInfo.family ? (
               <p>Family: {plantInfo.family} </p>
             ) : (
-              <p>Family: not available </p>
+              <p>Family not available </p>
             )}
             {plantInfo.vegetable === null || plantInfo.vegetable === "" ? (
-              <p>Vegetable: information not available</p>
+              <p>Vegetable: unknown</p>
             ) : plantInfo.vegetable === false ? (
-              <p>Vegetable: No</p>
+              <p>Vegetable: no</p>
             ) : (
               <p>Vegetable: {plantInfo.vegetable}</p>
             )}
 
             {plantInfo.edible === null || plantInfo.edible === "" ? (
-              <p>Edible: information not available</p>
+              <p>Edible: unknown</p>
             ) : plantInfo.edible === false ? (
               <p>Edible: No</p>
             ) : (
@@ -217,13 +223,13 @@ const PlantsBrowser = () => {
             {plantInfo.light ? (
               <p> Light: {plantInfo.light} </p>
             ) : (
-              <p> Light: information not available </p>
+              <p> Light: unknown</p>
             )}
 
             {plantInfo.humidity ? (
               <p> Humidity: {plantInfo.humidity} </p>
             ) : (
-              <p> Humidity: information not available </p>
+              <p> Humidity: unknown </p>
             )}
 
             {plantInfo.phLow && plantInfo.phHight ? (
@@ -232,7 +238,7 @@ const PlantsBrowser = () => {
                 Ideal pH between: {plantInfo.phLow} and {plantInfo.phHight}{" "}
               </p>
             ) : (
-              <p> Ideal pH between: information not available </p>
+              <p> Ideal pH between: unknown </p>
             )}
 
             {plantInfo.sources ? (

@@ -6,8 +6,16 @@ export const NavBar = styled.nav`
 display: flex;
 justify-content: space-around;
 align-items: center;
-background-color: #047c5E;
+background-color: #486454;
 height: 10vh;
+
+p{
+  color: #e29578;
+font-size: 24px;
+font-weight: 600;
+
+font-family: 'Poppins', sans-serif;
+}
 `;
 
 export const PathLink = styled(Link)`

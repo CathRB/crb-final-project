@@ -38,9 +38,9 @@ fetch("/api/get-userInfo-for-session", {
 
 
   //Add data to MyGarden
-const addToMyGarden = ({myGardenId, plantId, commonName, family, vegetable, edible, edibleParts, light, humidity, phLow,  phHight, sources, image}) => {
+const addToMyGarden = ({myGardenId, plantId, commonName, scientificName, family, vegetable, edible, edibleParts, light, humidity, phLow,  phHight, sources, image}) => {
   
-  const newGarden = [...user.myGarden, {myGardenId, plantId, commonName, family, vegetable, edible, edibleParts, light, humidity, phLow,  phHight, sources, image}];
+  const newGarden = [...user.myGarden, {myGardenId, plantId, commonName, scientificName, family, vegetable, edible, edibleParts, light, humidity, phLow,  phHight, sources, image}];
    setUser ({...user, myGarden:newGarden})
 }
 
