@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useState, useContext} from "react"
 import { UserContext } from "../Context/UserContext"
 import Button from '@mui/material/Button';
@@ -21,17 +21,27 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import addPersonalSettings from "./addPersonalSettings";
+import dayjs from 'dayjs';
 
 
 
-const MySettingsModal = ({open, userId, myGardenId, setErrorMessage, plantIndex, setOpen}) => {
 
-     const [personalSettings, setPersonalSettings] = useState({userId, sunExposition: ""})
-     const { user, updateMyGarden} = useContext(UserContext)
-  
-   const handleClose = () => {
-      setOpen(false);
-    };
+const MySettingsModal = ({open, handleClose, userId, myGardenId, setErrorMessage, plantIndex}) => {
+  const { user, updateMyGarden} = useContext(UserContext)
+     const [personalSettings, setPersonalSettings] = useState({userId, 
+                                                              plantLocation: "",
+                                                              sunExposition: "",
+                                                              wateringFrequency: "",
+                                                              lastWatering: "",
+                                                              fertilizerName: "",
+                                                              fertilizerFrequency: "",
+                                                              lastFertilizing: "",
+                                                              comments: "",
+                                                              ...user.myGarden[plantIndex] })
+    
+useEffect (() => {
+  setPersonalSettings({userId, sunExposition: "",...user.myGarden[plantIndex] })
+}, [plantIndex])
  
     const handleChange = (key, value) => {
       setPersonalSettings({
@@ -57,7 +67,7 @@ const handleDateWatering = (newValue) => {
   return (
     <React.Fragment>
       
-      <Dialog open={open} onClose={handleClose(setOpen)}>
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle sx={{ paddingBottom:0, color:"green"}}>Add my psersonal care settings</DialogTitle>
         <DialogContent>
            <TextField
@@ -69,6 +79,7 @@ const handleDateWatering = (newValue) => {
             type="text"
             fullWidth
             variant="standard"
+            value = {personalSettings.plantLocation}
             onChange={(event) =>
             handleChange("plantLocation", event.target.value)
              }
@@ -87,6 +98,7 @@ const handleDateWatering = (newValue) => {
             handleChange("sunExposition", event.target.value)
           }
         >
+           <MenuItem value={""}></MenuItem>
            <MenuItem value={"low"}>Low</MenuItem>
           <MenuItem value={"moderate"}>Moderate</MenuItem>
           <MenuItem value={"high"}>High</MenuItem>
@@ -103,6 +115,7 @@ sx={{marginBottom: 3}}
             type="number"
             fullWidth
             variant="standard"
+            value={personalSettings.wateringFrequency}
             onChange={(event) =>
               handleChange("wateringFrequency", event.target.value)
             }
@@ -112,7 +125,7 @@ sx={{marginBottom: 3}}
           >Last watering</InputLabel>
         <DatePicker
         sx={{marginBottom: 3}}
-        //value={wateringValue}
+        value={dayjs( `${personalSettings.lastWatering}`)}
         onChange={(newValue) => {handleDateWatering(newValue) }}
         />
      </LocalizationProvider>
@@ -126,6 +139,7 @@ sx={{marginBottom: 3}}
             type="text"
             fullWidth
             variant="standard"
+            value={personalSettings.fertilizerName}
             onChange={(event) =>
               handleChange("fertilizerName", event.target.value)
             }
@@ -140,6 +154,7 @@ sx={{marginBottom: 5}}
             type="number"
             fullWidth
             variant="standard"
+            value={personalSettings.fertilizerFrequency}
             onChange={(event) =>
               handleChange("fertilizerFrequency", event.target.value)
             }
@@ -147,9 +162,10 @@ sx={{marginBottom: 5}}
 
     <LocalizationProvider dateAdapter={AdapterDayjs}>
      <InputLabel id="lastFertilizing" 
-          >Last fertilizing</InputLabel>
+          >Last fertilizer add:</InputLabel>
         <DatePicker
         sx={{marginBottom: 3}}
+        value={dayjs( `${personalSettings.lastFertilizing}`)}
          onChange={(newValue) => {handleDateFertilizing(newValue) }}
         />
      </LocalizationProvider>
@@ -162,6 +178,7 @@ sx={{marginBottom: 5}}
             type="text"
             fullWidth
             variant="standard"
+            value={personalSettings.comments}
             onChange={(event) =>
               handleChange("comments", event.target.value)
             }
@@ -169,8 +186,8 @@ sx={{marginBottom: 5}}
 
         </DialogContent>
         <DialogActions>
-          <Button sx={{color: "green"}} onClick={handleClose(setOpen)}>Cancel</Button>
-          <Button   sx={{color: "green"}} onClick= {(event) => {addPersonalSettings(event, personalSettings, myGardenId, updateMyGarden, setErrorMessage)}}>Save changes</Button>
+          <Button sx={{color: "green"}} onClick={handleClose}>Cancel</Button>
+          <Button   sx={{color: "green"}} onClick= {(event) => {addPersonalSettings(event, personalSettings, myGardenId, updateMyGarden, setErrorMessage, handleClose)}}>Save changes</Button>
         </DialogActions>
       </Dialog>
         </React.Fragment>

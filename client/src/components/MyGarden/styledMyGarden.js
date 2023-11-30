@@ -118,7 +118,15 @@ export const BottomBox=styled.div`
 display: flex;
 justify-content: flex-end;
 min-width: 45vw;
+
+p{
+  margin-left: 40px;
+    margin-right: 20px;
+    font-weight: 700;
+    font-size: 16px;
+}
 `;
+
 export const GarbageButton=styled.button`
   border: none;
 background-color: transparent;
@@ -170,6 +178,25 @@ background-color: #9acbaf;
 }
 `;
 
+export const YesNoButton=styled.button`
+
+  width: 80px;
+  border-radius: 10px;
+border: solid 2px  #486454;
+color: #9c7a6d;
+font-size: 14px;
+font-weight: 600;
+font-family: 'Poppins', sans-serif;
+background-color: #9acbaf;
+margin-left: 10px;
+margin-right: 10px;
+margin-bottom: 10px;
+
+&:disabled{
+  opacity:0.3;
+}
+`;
+
 export default {
     Main,
     DivGrid,
@@ -184,5 +211,6 @@ export default {
     TaskIcon,
     GarbageButton,
     SettingsButton,
-    Footer
+    Footer,
+    YesNoButton,
 };

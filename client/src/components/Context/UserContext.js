@@ -11,7 +11,6 @@ export const UserProvider = ({ children }) => {
   const [errorMessage, setErrorMessage] = useState(null)
   const loggedInUser =  sessionStorage.getItem("user")
 
-
 useEffect(() => {
 
 if (loggedInUser) {
@@ -59,7 +58,7 @@ const removeFromMyGarden = (myGardenId) => {
 //Update MyGarden
 const updateMyGarden = ({myGardenId, plantLocation, sunExposition, wateringFrequency, lastWatering, fertilizerName, fertilizerFrequency, lastFertilizing, comments}) => {
   const updateGarden = user.myGarden.map((garden)=> {
-    if (garden.myGadenId === myGardenId)
+    if (garden.myGardenId === myGardenId)
     { garden.plantLocation=plantLocation; garden.sunExposition=sunExposition; garden.wateringFrequency=wateringFrequency; garden.lastWatering=lastWatering; garden.fertilizerName=fertilizerName; garden.fertilizerFrequency=fertilizerFrequency; garden.lastFertilizing=lastFertilizing; garden.comments=comments}
     
      return garden
@@ -69,7 +68,7 @@ const updateMyGarden = ({myGardenId, plantLocation, sunExposition, wateringFrequ
    
 
   return (
-    <UserContext.Provider value={{user, setUser, addToMyGarden, removeFromMyGarden,updateMyGarden }}>
+    <UserContext.Provider value={{user, setUser, addToMyGarden, removeFromMyGarden,updateMyGarden, loggedInUser}}>
       {children}
     </UserContext.Provider>
   );

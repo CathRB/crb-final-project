@@ -1,7 +1,8 @@
+import { Navigate } from "react-router-dom";
 
 
   //Update with user settings
-  const addPersonalSettings= (event, personalSettings, myGardenId, updateMyGarden, setErrorMessage) => {
+  const addPersonalSettings= (event, personalSettings, myGardenId, updateMyGarden, setErrorMessage, handleClose) => {
     event.preventDefault();
   
     fetch("/api/add-user-comments", {
@@ -16,11 +17,10 @@
         .then((response) => {
           if (response.status === 201) {
              updateMyGarden(response.data);
-            location.reload();
           } else setErrorMessage(response.message);
         })
         .catch((error) => {
-             setErrorMessage("Error during updating process", error);
+          setErrorMessage("Error during updating process", error);
         })
         .finally(() => {
           handleClose();

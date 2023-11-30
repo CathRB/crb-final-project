@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const Main = styled.main`
 background-color:#c0d4b4;
 max-width: 100vw;
-height: 258vh;
+min-height: 100vh;
 margin-top: 15px;
+padding-bottom: 7vh;
 `;
 
 export const HeaderBox = styled.div`
@@ -92,10 +93,11 @@ outline: none;
 export const Footer = styled.footer`
 display: flex;
 justify-content: center;
+margin-top: 8vh;
 
 p{
-  margin-left: 20px;
-    margin-right: 20px;
+  margin-left: 30px;
+    margin-right: 30px;
     font-weight: 700;
     font-size: 16px;
     
@@ -110,6 +112,7 @@ font-size: 14px;
 font-weight: 600;
 font-family: 'Poppins', sans-serif;
 background-color: #9acbaf;
+
 
 &:disabled{
   opacity:0.3;
