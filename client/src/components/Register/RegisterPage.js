@@ -4,7 +4,7 @@ import { UserContext } from "../Context/UserContext";
 import {
     Background, Title, Form, Container, Label, Input, Button  
 } from "./styledRegister"
-import registerBackground from "../../assets/registerBackground.jpg"
+import registerBackground from "../../assets/registerLoginBackground.jpg"
 
 
 

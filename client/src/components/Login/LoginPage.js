@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from "../Context/UserContext";
+import loginBackground from "../../assets/registerLoginBackground.jpg"
+import { Link } from 'react-router-dom';
 import {
-    Title, Form, Container, Label, Input, Button  
+  Background, Title, Form, Container, Label, Input, Button  
 } from "./styledLogin"
-
-
 
 
 const LoginPage = () => {
@@ -16,6 +16,7 @@ const LoginPage = () => {
     const [errorMessage, setErrorMessage]=useState(null)
     const { setUser } = useContext(UserContext);
 
+   
     const handleChange = (key, value) => {
         setLogInfo({
           ...logInfo,
@@ -56,7 +57,7 @@ const LoginPage = () => {
 
 return (
 <>
-
+<Background src={loginBackground} alt="loginBackground" />
 <Form onSubmit={handleSubmit}>
 <Title>Log into your account</Title>
     <Container>
@@ -69,7 +70,7 @@ return (
 
     </Container>
     <Button type="Submit" disabled={sending}>{sending ? "Submitting information" : "Log in"} </Button>
-
+    <p>  Don't have an account? Register{' '} <Link to="/register"> here</Link>.</p>
     {errorMessage?(
     <p> {errorMessage} </p>
  ): (<></>)}

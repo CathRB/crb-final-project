@@ -1,7 +1,16 @@
 import styled from "styled-components";
 
 
-
+export const Background = styled.img`
+position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.5;
+`;
 
 export const Title = styled.h1`
 `
@@ -56,6 +65,6 @@ export const Button = styled.button`
 `
 
 export default {
-    Title, Form, Container, Label, Input, Button   
+  Background,  Title, Form, Container, Label, Input, Button   
 
 };

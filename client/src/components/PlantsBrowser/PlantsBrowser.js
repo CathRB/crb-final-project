@@ -1,14 +1,14 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../Context/UserContext";
 import { useNavigate } from "react-router-dom";
-import browserBackground from "../../assets/browserBackground.jpg";
 
-import { Main, DivGrid, PlantBox, Footer } from "./styledBrowser";
+
+import { Main, HeaderBox,  DivGrid, PlantBox, ErrorBox, Footer } from "./styledBrowser";
 
 const PlantsBrowser = () => {
   const [plantsData, setPlantsData] = useState(null);
   const [plantName, setPlantName] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("TEST");
   const [plantSlug, setPlantSlug] = useState(null);
   const [plantInfo, setPlantInfo] = useState(null);
   const [previousPage, setPreviousPage] = useState(true);
@@ -143,6 +143,7 @@ const PlantsBrowser = () => {
 
   return (
     <Main>
+      <HeaderBox>
       <h1>Plant Search</h1>
 
       <input placeholder="Type a plant name" type="text" id="search" />
@@ -157,10 +158,11 @@ const PlantsBrowser = () => {
       >
         Search
       </button>
-
+      </HeaderBox>
       <DivGrid>
         {plantsData ? (
           plantsData.map((plant) => {
+            console.log("plantInfo", plantInfo)
             return (
               <PlantBox
                 key={plant.id}
@@ -184,62 +186,24 @@ const PlantsBrowser = () => {
             );
           })
         ) : (
-          <p>{errorMessage}</p>
+          <p>{errorMessage}</p> 
         )}
  <PlantBox>
         {plantInfo ? (
            <>
-            {plantInfo.commonName ? (
-              <p>{plantInfo.commonName}</p>
-            ) : (
-              <p>Common name not available </p>
-            )}
-            {plantInfo.family ? (
-              <p>Family: {plantInfo.family} </p>
-            ) : (
-              <p>Family not available </p>
-            )}
+            {plantInfo.commonName ? (<p>{plantInfo.commonName}</p>) : (<p>Common name not available </p>)}
+            {plantInfo.family ? (<p>Family: {plantInfo.family} </p>) : (<p>Family not available </p> )}
             {plantInfo.vegetable === null || plantInfo.vegetable === "" ? (
-              <p>Vegetable: unknown</p>
-            ) : plantInfo.vegetable === false ? (
-              <p>Vegetable: no</p>
-            ) : (
-              <p>Vegetable: {plantInfo.vegetable}</p>
-            )}
+              <p>Vegetable: unknown</p>) : plantInfo.vegetable === false ? (<p>Vegetable: no</p>) : ( <p>Vegetable: {plantInfo.vegetable}</p>)}
 
-            {plantInfo.edible === null || plantInfo.edible === "" ? (
-              <p>Edible: unknown</p>
-            ) : plantInfo.edible === false ? (
-              <p>Edible: No</p>
-            ) : (
-              <p>Edible: Yes</p>
-            )}
+            {plantInfo.edible === null || plantInfo.edible === "" ? (<p>Edible: unknown</p> ): plantInfo.edible === false ? (<p>Edible: No</p>) : (<p>Edible: Yes</p>)}
 
-            {plantInfo.edibleParts ? (
-              <p>Edible part :{plantInfo.edibleParts.toString("")}</p>
-            ) : (
-              <></>
-            )}
-            {plantInfo.light ? (
-              <p> Light: {plantInfo.light} </p>
-            ) : (
-              <p> Light: unknown</p>
-            )}
+            {plantInfo.edibleParts ? (<p>Edible part :{plantInfo.edibleParts.toString("")}</p> ) : (<></>)}
+            {plantInfo.light ? (<p> Light: {plantInfo.light} </p>) : (<p> Light: unknown</p>)}
 
-            {plantInfo.humidity ? (
-              <p> Humidity: {plantInfo.humidity} </p>
-            ) : (
-              <p> Humidity: unknown </p>
-            )}
+            {plantInfo.humidity ? (<p> Humidity: {plantInfo.humidity} </p>) : (<p> Humidity: unknown </p>)}
 
-            {plantInfo.phLow && plantInfo.phHight ? (
-              <p>
-                {" "}
-                Ideal pH between: {plantInfo.phLow} and {plantInfo.phHight}{" "}
-              </p>
-            ) : (
-              <p> Ideal pH between: unknown </p>
-            )}
+            {plantInfo.phLow && plantInfo.phHight ? (<p>Ideal pH between: {plantInfo.phLow} and {plantInfo.phHight} </p>) : (<p> Ideal pH between: unknown </p>)}
 
             {plantInfo.sources ? (
               plantInfo.sources.map((source) => {
@@ -250,9 +214,7 @@ const PlantsBrowser = () => {
                     </a>
                   );
               })
-            ) : (
-              <p>Distribution map: information not available</p>
-            )}
+            ) : (<p>Distribution map: information not available</p>)}
 
             {!user ? (
               <p> Please log in to add this plant to your garden </p>
@@ -267,9 +229,7 @@ const PlantsBrowser = () => {
               </p>
             )}
         </>
-        ) : (
-          <p>{errorMessage}</p>
-        )}
+        ) : ( <></>)}
         </PlantBox>
       </DivGrid>
 

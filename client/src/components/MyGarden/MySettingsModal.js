@@ -7,7 +7,6 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -17,24 +16,23 @@ import Select from '@mui/material/Select';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs from 'dayjs';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import addPersonalSettings from "./addPersonalSettings";
 
 
 
-
-
-export default function MySettingsModal({open, handleClose, userId, myGardenId, setErrorMessage}) {
+const MySettingsModal = ({open, userId, myGardenId, setErrorMessage, plantIndex, setOpen}) => {
 
      const [personalSettings, setPersonalSettings] = useState({userId, sunExposition: ""})
-     
-
-     const { updateMyGarden} = useContext(UserContext)
+     const { user, updateMyGarden} = useContext(UserContext)
   
-
+   const handleClose = () => {
+      setOpen(false);
+    };
+ 
     const handleChange = (key, value) => {
       setPersonalSettings({
         ...personalSettings,
@@ -45,65 +43,35 @@ export default function MySettingsModal({open, handleClose, userId, myGardenId, 
 const handleDateWatering = (newValue) => {
     const date = new Date(newValue)
     let formatedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-     return (handleChange("lastWatering", formatedDate))
+     handleChange("lastWatering", formatedDate)
   }
 
 
   const handleDateFertilizing = (newValue) => {
     const date = new Date(newValue)
     let formatedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-    return (handleChange("lastWatering", formatedDate))
-  }
-
-
-
-  //Update with user settings
-const addPersonalSettings= (event) => {
-  event.preventDefault();
-
-  fetch("/api/add-user-comments", {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({...personalSettings, myGardenId}),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.status === 201) {
-           updateMyGarden(response.data);
-          location.reload();
-        } else setErrorMessage(response.message);
-      })
-      .catch((error) => {
-         setErrorMessage("Error during updating process", error);
-      })
-      .finally(() => {
-        handleClose();
-      });
-  };
+    handleChange("lastFertilizing", formatedDate)
+  } 
 
 
   return (
     <React.Fragment>
       
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose(setOpen)}>
         <DialogTitle sx={{ paddingBottom:0, color:"green"}}>Add my psersonal care settings</DialogTitle>
         <DialogContent>
-          
-          <TextField
+           <TextField
           sx={{marginBottom: 5}}
             autoFocus
             margin="dense"
-            id="location"
+            id="plantLocation"
             label="Location"
             type="text"
             fullWidth
             variant="standard"
             onChange={(event) =>
-              handleChange("plantLocation", event.target.value)
-            }
+            handleChange("plantLocation", event.target.value)
+             }
              />
 
 <Box sx={{ minWidth: 120 }}>
@@ -125,9 +93,6 @@ const addPersonalSettings= (event) => {
         </Select>
       </FormControl>
     </Box>
- 
-
-
 
 <TextField
 sx={{marginBottom: 3}}
@@ -142,8 +107,6 @@ sx={{marginBottom: 3}}
               handleChange("wateringFrequency", event.target.value)
             }
              />
-
-
     <LocalizationProvider dateAdapter={AdapterDayjs}>
      <InputLabel id="lastWatering" 
           >Last watering</InputLabel>
@@ -153,7 +116,6 @@ sx={{marginBottom: 3}}
         onChange={(newValue) => {handleDateWatering(newValue) }}
         />
      </LocalizationProvider>
-
 
 <TextField
 sx={{marginBottom: 3}}
@@ -183,7 +145,6 @@ sx={{marginBottom: 5}}
             }
              />
 
-
     <LocalizationProvider dateAdapter={AdapterDayjs}>
      <InputLabel id="lastFertilizing" 
           >Last fertilizing</InputLabel>
@@ -193,9 +154,6 @@ sx={{marginBottom: 5}}
         />
      </LocalizationProvider>
 
-
-
-             
 <TextField
             autoFocus
             margin="dense"
@@ -211,10 +169,12 @@ sx={{marginBottom: 5}}
 
         </DialogContent>
         <DialogActions>
-          <Button sx={{color: "green"}} onClick={handleClose}>Cancel</Button>
-          <Button   sx={{color: "green"}} onClick= {(event) => {addPersonalSettings(event)}}>Save changes</Button>
+          <Button sx={{color: "green"}} onClick={handleClose(setOpen)}>Cancel</Button>
+          <Button   sx={{color: "green"}} onClick= {(event) => {addPersonalSettings(event, personalSettings, myGardenId, updateMyGarden, setErrorMessage)}}>Save changes</Button>
         </DialogActions>
       </Dialog>
         </React.Fragment>
   );
 }
+
+export default  MySettingsModal
