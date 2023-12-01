@@ -1,5 +1,3 @@
-import { Navigate } from "react-router-dom";
-
 
   //Update with user settings
   const addPersonalSettings= (event, personalSettings, myGardenId, updateMyGarden, setErrorMessage, handleClose) => {
@@ -23,7 +21,7 @@ import { Navigate } from "react-router-dom";
           setErrorMessage("Error during updating process", error);
         })
         .finally(() => {
-          handleClose();
+            handleClose();
         });
     };
 

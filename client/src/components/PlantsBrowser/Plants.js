@@ -3,7 +3,7 @@ import { useState } from "react";
 import PlantDetails from "./PlantDetails";
 
 
-const GetPlants = ({plant, setPlantSlug, setScientificName, plantInfo, addPlantData, setErrorMessage}) => {
+const Plants = ({plant, setPlantSlug, setScientificName, plantInfo, addPlantData, setErrorMessage}) => {
   const [showDetails, setShowDetails] = useState(false)
     return (
 
@@ -34,4 +34,4 @@ const GetPlants = ({plant, setPlantSlug, setScientificName, plantInfo, addPlantD
   )
 }
 
-export default GetPlants
+export default Plants

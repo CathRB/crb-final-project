@@ -97,10 +97,10 @@ const GetGardens = ({index, plant, setGardenId, setErrorMessage, setPlantIndex, 
           <h2>My care settings</h2>
           <p>Location: {plant.plantLocation}</p>
           <p>SunExposition: {plant.sunExposition} </p> 
-          <p>Watering frequency: each {plant.wateringFrequency} day(s)</p>  
+          <p>Watering frequency:  {plant.wateringFrequency? (`each ${plant.wateringFrequency} day(s)`): (<></>) }</p>  
           <p>Last watering: {plant.lastWatering}</p> 
           <p>Fertilizer name: {plant.fertilizerName}</p>
-          <p>Fertilizer frequency: each { plant.fertilizerFrequency} day(s)</p>  
+          <p>Fertilizer frequency: {plant.fertilizerFrequency? (`each ${plant.fertilizerFrequency} day(s)`): (<></>) } </p>  
           <p>Last fertilizer add: {plant.lastFertilizing}</p> 
           <p>Comments: {plant.comments}</p>
           </MyCareBox>

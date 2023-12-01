@@ -1,9 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../Context/UserContext";
-import GetPlants from "./GetPlants";
+import Plants from "./Plants";
 import { Main, HeaderBox,  DivGrid, Footer } from "./styledBrowser";
 
 const PlantsBrowser = () => {
+  const { user} = useContext(UserContext);
   const [plantsData, setPlantsData] = useState(null);
   const [plantName, setPlantName] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -15,8 +16,6 @@ const PlantsBrowser = () => {
   const [totalPages, setTotalPages] = useState(null);
   const [scientificName, setScientificName] = useState(null)
  
-
-  const { user} = useContext(UserContext);
 
 
   let addPlantData =
@@ -80,6 +79,75 @@ const PlantsBrowser = () => {
     }
   }, [plantSlug]);
 
+
+  //Change humidity and light value for sentences
+
+useEffect(()=> {
+ 
+  if (plantInfo !== null) {
+if (plantInfo.light === null)
+{
+  setPlantInfo({
+    ...plantInfo,
+    light: null,
+  })
+  }
+  else if(plantInfo.light === 0){
+  setPlantInfo({
+    ...plantInfo,
+    light: "Dark night (< 1 lux)",
+  });
+  }  else if (plantInfo.light === 1){
+    setPlantInfo({
+      ...plantInfo,
+      light: "Full moon on a clear night (10 lux)",
+    })
+    }else if (plantInfo.light === 2){
+      setPlantInfo({
+        ...plantInfo,
+        light: "Public areas with dark surroundings (50 lux)",
+      })
+ }else if (plantInfo.light === 3){
+  setPlantInfo({
+    ...plantInfo,
+    light: "Very dark overcast day (100 lux)",
+  })
+  }else if (plantInfo.light === 4){
+    setPlantInfo({
+      ...plantInfo,
+      light: "Overcast day (1000 lux)",
+    })
+    }else if (plantInfo.light === 5){
+      setPlantInfo({
+        ...plantInfo,
+        light: "Cloudy day (5 000 lux)",
+      })
+}else if (plantInfo.light === 6){
+  setPlantInfo({
+    ...plantInfo,
+    light: "Full daylight without direct sunlight (10 000 lux)",
+  })
+  }else if (plantInfo.light === 7){
+    setPlantInfo({
+      ...plantInfo,
+      light: "Full daylight with some direct sunlight (50 000 lux)",
+    })
+    }else if (plantInfo.light === 8){
+      setPlantInfo({
+        ...plantInfo,
+        light: "Full daylight with a lot of direct sunlight (75 000 lux)",
+      })
+      }else if (plantInfo.light === 9 || plantInfo.light === 10 ){
+        setPlantInfo({
+          ...plantInfo,
+          light: "Direct sunlight (100 000 lux)",
+        })
+      }
+ 
+ }
+},[plantInfo])
+ 
+
   //Get plants from a search name - Other pages
 
   useEffect(() => {
@@ -132,7 +200,7 @@ const PlantsBrowser = () => {
         {plantsData ? (
           plantsData.map((plant) => {
               return (
-              <GetPlants
+              <Plants
                 key={plant.id}
                 plant={plant}
                 setPlantSlug={setPlantSlug}

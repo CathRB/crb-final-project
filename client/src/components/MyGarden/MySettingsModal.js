@@ -28,20 +28,31 @@ import dayjs from 'dayjs';
 
 const MySettingsModal = ({open, handleClose, userId, myGardenId, setErrorMessage, plantIndex}) => {
   const { user, updateMyGarden} = useContext(UserContext)
-     const [personalSettings, setPersonalSettings] = useState({userId, 
-                                                              plantLocation: "",
-                                                              sunExposition: "",
-                                                              wateringFrequency: "",
-                                                              lastWatering: "",
-                                                              fertilizerName: "",
-                                                              fertilizerFrequency: "",
-                                                              lastFertilizing: "",
-                                                              comments: "",
-                                                              ...user.myGarden[plantIndex] })
-    
+   const [personalSettings, setPersonalSettings] = useState({userId,...user.myGarden[plantIndex] })
+   const [wateringDate, setWateringDate]=useState(null)
+   const [fertilizingDate, setFertilizingDate]=useState(null)
+
+   
 useEffect (() => {
   setPersonalSettings({userId, sunExposition: "",...user.myGarden[plantIndex] })
+  
 }, [plantIndex])
+
+
+useEffect (() => {
+  const checkFertilizingDate = dayjs( `${personalSettings.lastFertilizing}`)
+  const checkWateringDate= dayjs( `${personalSettings.lastWatering}`)
+
+  if (checkFertilizingDate.$D)
+  {setFertilizingDate(dayjs( `${personalSettings.lastFertilizing}`))}
+  else{setFertilizingDate(null)}
+
+  if (checkWateringDate.$D)
+  {setWateringDate(dayjs( `${personalSettings.lastWatering}`))}
+  else{setWateringDate(null)}
+
+}, [personalSettings])
+
  
     const handleChange = (key, value) => {
       setPersonalSettings({
@@ -53,14 +64,18 @@ useEffect (() => {
 const handleDateWatering = (newValue) => {
     const date = new Date(newValue)
     let formatedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-     handleChange("lastWatering", formatedDate)
+    if (formatedDate==="NaN-NaN-NaN")
+    {handleChange("lastWatering", null)}
+    else{handleChange("lastWatering", formatedDate)}
   }
 
 
   const handleDateFertilizing = (newValue) => {
     const date = new Date(newValue)
     let formatedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-    handleChange("lastFertilizing", formatedDate)
+    if(formatedDate==="NaN-NaN-NaN")
+   {handleChange("lastFertilizing", null)}
+   else{handleChange("lastFertilizing", formatedDate)}
   } 
 
 
@@ -79,7 +94,7 @@ const handleDateWatering = (newValue) => {
             type="text"
             fullWidth
             variant="standard"
-            value = {personalSettings.plantLocation}
+            value = { personalSettings.plantLocation || ""}
             onChange={(event) =>
             handleChange("plantLocation", event.target.value)
              }
@@ -92,7 +107,7 @@ const handleDateWatering = (newValue) => {
         sx={{marginBottom: 3}}
           labelId="sunExposition"
           id="sunExposition"
-          value={personalSettings.sunExposition}
+          value={personalSettings.sunExposition || ""}
           label="Sun exposition"
           onChange={(event) =>
             handleChange("sunExposition", event.target.value)
@@ -104,7 +119,7 @@ const handleDateWatering = (newValue) => {
           <MenuItem value={"high"}>High</MenuItem>
         </Select>
       </FormControl>
-    </Box>
+    </Box> 
 
 <TextField
 sx={{marginBottom: 3}}
@@ -115,22 +130,22 @@ sx={{marginBottom: 3}}
             type="number"
             fullWidth
             variant="standard"
-            value={personalSettings.wateringFrequency}
+            value={personalSettings.wateringFrequency || ""}
             onChange={(event) =>
               handleChange("wateringFrequency", event.target.value)
-            }
-             />
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+            } />
+            
+  <LocalizationProvider dateAdapter={AdapterDayjs}>
      <InputLabel id="lastWatering" 
           >Last watering</InputLabel>
         <DatePicker
         sx={{marginBottom: 3}}
-        value={dayjs( `${personalSettings.lastWatering}`)}
+        value={wateringDate}
         onChange={(newValue) => {handleDateWatering(newValue) }}
         />
-     </LocalizationProvider>
+     </LocalizationProvider> 
 
-<TextField
+ <TextField
 sx={{marginBottom: 3}}
             autoFocus
             margin="dense"
@@ -139,7 +154,7 @@ sx={{marginBottom: 3}}
             type="text"
             fullWidth
             variant="standard"
-            value={personalSettings.fertilizerName}
+            value={personalSettings.fertilizerName || ""}
             onChange={(event) =>
               handleChange("fertilizerName", event.target.value)
             }
@@ -154,22 +169,22 @@ sx={{marginBottom: 5}}
             type="number"
             fullWidth
             variant="standard"
-            value={personalSettings.fertilizerFrequency}
+            value={personalSettings.fertilizerFrequency || ""}
             onChange={(event) =>
               handleChange("fertilizerFrequency", event.target.value)
             }
-             />
+             /> 
 
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+<LocalizationProvider dateAdapter={AdapterDayjs}>
      <InputLabel id="lastFertilizing" 
           >Last fertilizer add:</InputLabel>
         <DatePicker
         sx={{marginBottom: 3}}
-        value={dayjs( `${personalSettings.lastFertilizing}`)}
+        value={fertilizingDate}
          onChange={(newValue) => {handleDateFertilizing(newValue) }}
         />
      </LocalizationProvider>
-
+ 
 <TextField
             autoFocus
             margin="dense"
@@ -178,15 +193,15 @@ sx={{marginBottom: 5}}
             type="text"
             fullWidth
             variant="standard"
-            value={personalSettings.comments}
+            value={personalSettings.comments || " "}
             onChange={(event) =>
               handleChange("comments", event.target.value)
             }
-             />
+             /> 
 
         </DialogContent>
         <DialogActions>
-          <Button sx={{color: "green"}} onClick={handleClose}>Cancel</Button>
+          <Button sx={{color: "green"}} onClick={()=> {setPersonalSettings(userId), handleClose()}}>Cancel</Button>
           <Button   sx={{color: "green"}} onClick= {(event) => {addPersonalSettings(event, personalSettings, myGardenId, updateMyGarden, setErrorMessage, handleClose)}}>Save changes</Button>
         </DialogActions>
       </Dialog>
