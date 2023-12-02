@@ -65,7 +65,14 @@ margin-right: 20px;
 export const Button = styled.button`
 `
 
+export const ErrorMessage = styled.p`
+ font-family: 'Poppins', sans-serif;
+ text-align: center;
+ font-size: 1.1em;
+ color: red;
+`;
+
 export default {
-    Background, Title, Form, Container, Label, Input, Button   
+    Background, Title, Form, Container, Label, Input, Button, ErrorMessage,
 
 };

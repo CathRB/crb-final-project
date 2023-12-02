@@ -1,20 +1,21 @@
 import React from "react";
-import {useContext, useState, useEffect} from "react"
+import {useContext, useState} from "react"
 import { UserContext } from "../Context/UserContext";
+import { Link } from 'react-router-dom';
 import MySettingsModal from "./MySettingsModal"
 import GetGardens from "./GetGardens";
-
+import useSetGardenDisplayAndButtons from "./useSetGardenDisplayAndButtons";
 import {
   Main,
     DivGrid,
    Footer,
+   ErrorMessage,
   } from "./styledMyGarden"
 
 
 const MyGarden = () => {
     
 
-const [errorMessage, setErrorMessage] = useState(null)
 const [previousPage, setPreviousPage] = useState(true);
 const [nextPage, setNextPage] = useState(true);
 const [pageNumber, setPageNumber] = useState(1);
@@ -23,75 +24,39 @@ const [gardenId, setGardenId] = useState(null);
 const [plantIndex, setPlantIndex] = useState(null);
 const [open, setOpen] = useState(false);
 const [gardenToDisplay, setGardenToDisplay] = useState(null);
-
-
-const {user, loggedInUser} = useContext(UserContext)
+const {user, loggedInUser, errorMessage} = useContext(UserContext)
 
 
 const date = new Date()
 let dateMDY = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
-
 const handleClickOpen = () => {
   setOpen(true);
   };
-
 
 const handleClose = () => {
   setOpen(false);
 };
 
 
-  //Set number of pages and next button
-  useEffect(() => {
-    if(user){
-     setTotalPages(Math.ceil(user.myGarden.length / 2));
-       if (user.myGarden.length  < 3 ) {
-        setNextPage(true);
-        } else {
-        setNextPage(false);
-         }
-          }
-     }, [user]);
+  useSetGardenDisplayAndButtons (setTotalPages, pageNumber, totalPages, setNextPage, setPreviousPage,  setGardenToDisplay)
 
-//Set previous and next buttons
-     useEffect(() => {
-      if(totalPages){
-       if (pageNumber !== 1) {
-          setPreviousPage(false);
-        } else {
-          setPreviousPage(true);
-        }
-          if (pageNumber === totalPages) {
-          setNextPage(true);
-        } else {
-          setNextPage(false);
-        }
-      }
-    }, [totalPages, pageNumber]);
 
- //Set number of garden to display by page (2)
-useEffect(() => {
-  if(user){
-  const gardenByPage = user.myGarden.filter((plant, index) => {
-    if (index >= (pageNumber - 1) * 2 && index < pageNumber * 2) {
-      return plant;
-    }
-  });
-  setGardenToDisplay(gardenByPage);
-  }
-  }, [user, pageNumber]);
-
- 
    return(
      
         <Main>
+          {errorMessage?(<ErrorMessage> {errorMessage} </ErrorMessage> ): <></>}
        {loggedInUser? ( <></>
            ): (<h1>Please log in or set an account to have acces to this feature</h1>) }
+           {user && user.myGarden.length === 0 ?(
+            (<h1>Go to the  {' '} <Link to="/plantsBrowser">plant browser </Link> {' '} and add plant to your garden!</h1>) 
+           ):<></>}
+
+           
               <DivGrid>
 
                 {user?(
-                  <MySettingsModal open={open} handleClose={handleClose} userId={user._id} myGardenId={gardenId} setErrorMessage={setErrorMessage} plantIndex={plantIndex}/> 
+                  <MySettingsModal open={open} handleClose={handleClose} userId={user._id} myGardenId={gardenId} plantIndex={plantIndex}/> 
                 ): <></>}
                 
             {gardenToDisplay? (
@@ -102,15 +67,12 @@ useEffect(() => {
               index={index}
               plant={plant}
               setGardenId={setGardenId}
-              setErrorMessage={setErrorMessage}
               setPlantIndex={setPlantIndex}
               handleClickOpen = {handleClickOpen}
                  />
               )}
               )
               ) : (<></>) }
-
-            {errorMessage?(<p> {errorMessage} </p> ): <></>}
 
             </DivGrid>
             {user && user.myGarden.length > 0 ?(

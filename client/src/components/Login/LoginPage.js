@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from "../Context/UserContext";
 import loginBackground from "../../assets/registerLoginBackground.jpg"
 import { Link } from 'react-router-dom';
+import sendLogin from "./sendLogin";
 import {
-  Background, Title, Form, Container, Label, Input, Button  
+  Background, Title, Form, Container, Label, Input, Button, ErrorMessage
 } from "./styledLogin"
 
 
@@ -13,8 +14,7 @@ const LoginPage = () => {
     const navigate = useNavigate()
     const [logInfo, setLogInfo] = useState({});
     const [sending, setSending] = useState(false);
-    const [errorMessage, setErrorMessage]=useState(null)
-    const { setUser } = useContext(UserContext);
+    const { setUser, errorMessage, setErrorMessage } = useContext(UserContext);
 
    
     const handleChange = (key, value) => {
@@ -24,55 +24,26 @@ const LoginPage = () => {
         });
       };
 
-    const handleSubmit = (event) => {
-        setSending(true);
-        event.preventDefault();
-    
-        fetch("/api/get-userInfo", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(logInfo),
-        })
-          .then((response) => response.json())
-          .then((response) => {
-             if (response.status === 200) {
-              setUser(response.data);
-              sessionStorage.setItem('user', response.data._id)
-              navigate(`/myGarden`);
-            } else setErrorMessage(response.message);
-          })
-          .catch((error) => {
-            setErrorMessage("Error during register process", error);
-          })
-          .finally(() => {
-            setSending(false);
-          });
-      }; 
-
-   
-
 
 return (
 <>
 <Background src={loginBackground} alt="loginBackground" />
-<Form onSubmit={handleSubmit}>
+<Form onSubmit= {(event) =>sendLogin( event, setSending, logInfo, setUser, navigate, setErrorMessage)}>
+
 <Title>Log into your account</Title>
     <Container>
    
     <Label htmlFor = "email">Email address: </Label>
-    <Input required id="email" type="email" placeholder = "Email address" onChange={(event) => handleChange(event.target.id, event.target.value)}></Input>
+    <Input required id="email" type="email" placeholder = "Email address" onChange={(event) => {handleChange(event.target.id, event.target.value); setErrorMessage(null)}}></Input>
 
     <Label htmlFor = "password">Password: </Label>
-    <Input required id="password" type="password" placeholder = "Password" onChange={(event) => handleChange(event.target.id, event.target.value)}></Input>
+    <Input required id="password" type="password" placeholder = "Password" onChange={(event) => {handleChange(event.target.id, event.target.value); setErrorMessage(null)}}></Input>
 
     </Container>
     <Button type="Submit" disabled={sending}>{sending ? "Submitting information" : "Log in"} </Button>
-    <p>  Don't have an account? Register{' '} <Link to="/register"> here</Link>.</p>
+    <p> If you don't have an account, please go to the {' '} <Link to="/register"> register </Link> {' '}  section</p>
     {errorMessage?(
-    <p> {errorMessage} </p>
+    <ErrorMessage> {errorMessage} </ErrorMessage>
  ): (<></>)}
 
 </Form>

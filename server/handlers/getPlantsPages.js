@@ -17,11 +17,11 @@
      if (plantsPages.error)
      return response.status(404).json({status: 404, message:`Page ${pageNumber} not found`});
  
-         return response.status(200).json({status: 200, data: plantsPages.data,  message: "Plant found"});
+        return response.status(200).json({status: 200, data: plantsPages.data,  message: "Plant found"});
      
    }catch (error) {
          console.error("Error:", error.stack);
-         response.status(500).json({status: 500, error: error.message})
+         response.status(500).json({status: 500, message: "Unknown error occured"})
      }
    
    };

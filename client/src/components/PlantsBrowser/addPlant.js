@@ -3,6 +3,7 @@
 const addPlant = (event, addPlantData, addToMyGarden, navigate, setErrorMessage, setAdding) => {
 
     //Add a plant to user library
+ 
 
     setAdding(true);
     event.preventDefault();

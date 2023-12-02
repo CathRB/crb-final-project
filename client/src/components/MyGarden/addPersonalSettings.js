@@ -1,6 +1,8 @@
 
   //Update with user settings
-  const addPersonalSettings= (event, personalSettings, myGardenId, updateMyGarden, setErrorMessage, handleClose) => {
+  const addPersonalSettings= (event, personalSettings, myGardenId, updateMyGarden, handleClose, setErrorMessage) => {
+
+    
     event.preventDefault();
   
     fetch("/api/add-user-comments", {

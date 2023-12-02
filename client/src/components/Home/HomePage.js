@@ -1,20 +1,9 @@
-import {useState, useEffect} from "react"
+
 import {
 
   } from "./styledHome"
 
 const HomePage = () => {
-
-/*     const [people, setPeople] = useState(null);
-
-    useEffect(() => {
-        fetch("/api/people")
-        .then((response)=>response.json())
-        .then(setPeople);
-
-    }, [])
-console.log(people)
-    if(!people) return <h1>Loading...</h1> */
 
     return (
         <main>

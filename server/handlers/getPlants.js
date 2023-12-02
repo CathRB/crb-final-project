@@ -18,7 +18,7 @@ const getPlants = async (request, response) => {
     
   }catch (error) {
         console.error("Error:", error.stack);
-        response.status(500).json({status: 500, error: error.message})
+        response.status(500).json({status: 500, message: "Unknown error occured"})
     }
   
   };

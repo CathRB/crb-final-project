@@ -34,7 +34,7 @@ const image = plantInfo.data.image_url
      
    }catch (error) {
          console.error("Error:", error.stack);
-         response.status(500).json({status: 500, error: error.message})
+         response.status(500).json({status: 500, message: "Unknown error occured"})
      }
    
    };

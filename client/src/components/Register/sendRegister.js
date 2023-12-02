@@ -1,30 +1,22 @@
 
+const sendRegister = (event, setSending, registerInfo, setUser, navigate, setErrorMessage) => {
 
-
-/* const handleChange = (key, value, setLogInfo, logInfo) => {
-    console.log(logInfo)
-    setLogInfo({
-      ...logInfo,
-      [key]: value,
-    });
-  };
-
-const handleSubmit = (event, setSending, logInfo, setUser, navigate, setErrorMessage) => {
-    setSending(true);
+  
+  setSending(true);
     event.preventDefault();
 
-    fetch("/api/get-userInfo", {
+    fetch("/api/add-user", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(logInfo),
+      body: JSON.stringify(registerInfo),
     })
       .then((response) => response.json())
       .then((response) => {
-         if (response.status === 200) {
-          setUser(response.data);
+        if (response.status === 201) {
+          setUser(response.data)
           sessionStorage.setItem('user', response.data._id)
           navigate(`/myGarden`);
         } else setErrorMessage(response.message);
@@ -37,4 +29,4 @@ const handleSubmit = (event, setSending, logInfo, setUser, navigate, setErrorMes
       });
   }; 
 
-  export default  handleChange; handleSubmit */
+  export default sendRegister

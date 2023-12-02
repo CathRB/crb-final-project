@@ -1,4 +1,3 @@
-//To Do: catch error
 
 
 import {createContext, useEffect, useState} from "react";
@@ -10,6 +9,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null)
   const loggedInUser =  sessionStorage.getItem("user")
+
 
 useEffect(() => {
 
@@ -68,7 +68,7 @@ const updateMyGarden = ({myGardenId, plantLocation, sunExposition, wateringFrequ
    
 
   return (
-    <UserContext.Provider value={{user, setUser, addToMyGarden, removeFromMyGarden,updateMyGarden, loggedInUser}}>
+    <UserContext.Provider value={{user, setUser, addToMyGarden, removeFromMyGarden,updateMyGarden, loggedInUser, errorMessage, setErrorMessage}}>
       {children}
     </UserContext.Provider>
   );

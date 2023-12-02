@@ -25,11 +25,11 @@ import {
   } from "./styledMyGarden"
 
    
-const GetGardens = ({index, plant, setGardenId, setErrorMessage, setPlantIndex, handleClickOpen}) => {
+const GetGardens = ({index, plant, setGardenId, setPlantIndex, handleClickOpen}) => {
     const [removeButton, setRemoveButton]=useState("")
     const [yesNoButton, setYesNoButton]=useState("none")
     const [plantToRemove, setPlantToRemove]=useState()
-    const {user, removeFromMyGarden} = useContext(UserContext)
+    const {user, removeFromMyGarden, setErrorMessage} = useContext(UserContext)
     const navigate = useNavigate()
     
     const date = new Date()
@@ -117,7 +117,7 @@ const GetGardens = ({index, plant, setGardenId, setErrorMessage, setPlantIndex, 
           
           <GarbageButton style={{ display: removeButton }}onClick={() => {setPlantToRemove({userId: user._id, myGardenId: plant.myGardenId}); setRemoveButton("none"); setYesNoButton("")}}><img src={rubbish} alt={"trash"}/></GarbageButton>
            <p style={{ display: yesNoButton }} >Are you sure you want to remove this plant from your garden?</p>
-          <YesNoButton style={{ display: yesNoButton }} onClick={(event) => removePlant(event, plantToRemove, setErrorMessage, removeFromMyGarden, navigate)}>Yes</YesNoButton>
+          <YesNoButton style={{ display: yesNoButton }} onClick={(event) => removePlant(event, plantToRemove,  removeFromMyGarden, navigate, setErrorMessage)}>Yes</YesNoButton>
           <YesNoButton style={{ display: yesNoButton }} onClick={() => {setPlantToRemove(null); setRemoveButton(""); setYesNoButton("none")}}>Non</YesNoButton>
           </BottomBox>
         </PlantBox>

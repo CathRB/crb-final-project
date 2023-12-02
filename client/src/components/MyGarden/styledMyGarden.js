@@ -4,8 +4,9 @@ import styled from "styled-components";
 export const Main = styled.main`
 background-color:#c0d4b4;
 max-width: 100vw;
-height: 86vh;
+min-height: 86vh;
 margin-top: 15px;
+padding-bottom: 7vh;
 
 h1{
   text-align: center;
@@ -14,6 +15,7 @@ h1{
 
 }
 `;
+
 
 export const DivGrid = styled.div`
   display: grid;
@@ -153,6 +155,7 @@ margin-right: 150px;
 export const Footer=styled.footer`
 display: flex;
 justify-content: center;
+margin-top: 8vh;
 
 p{
     margin-left: 20px;
@@ -178,6 +181,8 @@ background-color: #9acbaf;
 }
 `;
 
+
+
 export const YesNoButton=styled.button`
 
   width: 80px;
@@ -197,6 +202,13 @@ margin-bottom: 10px;
 }
 `;
 
+export const ErrorMessage = styled.p`
+ font-family: 'Poppins', sans-serif;
+ text-align: center;
+ font-size: 1.7em;
+ color: red;
+`;
+
 export default {
     Main,
     DivGrid,
@@ -213,4 +225,5 @@ export default {
     SettingsButton,
     Footer,
     YesNoButton,
+    ErrorMessage,
 };

@@ -120,6 +120,13 @@ background-color: #9acbaf;
 }
 `;
 
+export const ErrorMessage = styled.p`
+ font-family: 'Poppins', sans-serif;
+ text-align: center;
+ font-size: 1.7em;
+ color: red;
+`;
+
 export default {
   Main,
   HeaderBox,
@@ -127,6 +134,7 @@ export default {
     PlantBox,
     ErrorBox,
     Footer,
+    ErrorMessage,
 
 
 };

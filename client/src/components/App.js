@@ -13,7 +13,7 @@ return(
     <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/myGarden" element={<MyGarden/>}/>
-        <Route path="/plants" element={<PlantsBrowser/>}/>
+        <Route path="/plantsBrowser" element={<PlantsBrowser/>}/>
         <Route path="/register" element={<RegisterPage/>}/>
         <Route path="/LogIn" element={<LoginPage/>}/>
     </Routes>

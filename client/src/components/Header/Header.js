@@ -25,7 +25,7 @@ const handleLogout = (event) => {
         <NavBar>
             
             <PathLink to="/">Home</PathLink>
-            <PathLink to="/plants">Plant Browser</PathLink>
+            <PathLink to="/plantsBrowser">Plant Browser</PathLink>
             
             {user?(
             <p>🪴 {user.firstName}'s garden 🪴</p>

@@ -2,17 +2,46 @@ import { useContext, useState } from "react";
 import { UserContext } from "../Context/UserContext";
 import { useNavigate } from "react-router-dom";
 import addPlant from "./addPlant";
+import useGetPlantInfo from "./useGetPlantInfo";
+import useGetLightAndHumiditySentences from "./useGetLightAndHumiditySentences";
 
 
-
-const PlantDetails = ({plantInfo, addPlantData, setErrorMessage}) => {
+const PlantDetails = ({plantSlug, scientificName}) => {
     const [adding, setAdding] = useState(false);
-    const {user, addToMyGarden } = useContext(UserContext);
+    const {user, addToMyGarden, setErrorMessage } = useContext(UserContext);
+    const [plantInfo, setPlantInfo] = useState(null);
     const navigate = useNavigate();
+   
+    let addPlantData =
+    user && plantInfo
+      ? {
+          userId: user._id,
+          plantId: plantInfo.plantId,
+          commonName: plantInfo.commonName,
+          scientificName,
+          family: plantInfo.family,
+          vegetable: plantInfo.vegetable,
+          edible: plantInfo.edible,
+          edibleParts: plantInfo.edibleParts,
+          light: plantInfo.light,
+          humidity: plantInfo.humidity,
+          phLow: plantInfo.phLow,
+          phHight: plantInfo.phHight,
+          sources: plantInfo.sources,
+          image: plantInfo.image,
+        }
+      : null;
 
+      console.log()
 
-return (
-<>
+  useGetPlantInfo(plantSlug, setPlantInfo);
+  useGetLightAndHumiditySentences(setPlantInfo, plantInfo);
+
+ return (
+  <>
+    
+{plantInfo?( 
+  <>
       {plantInfo.commonName ? (<p>{plantInfo.commonName}</p>) : (<p>Common name not available </p>)}
       {plantInfo.family ? (<p>Family: {plantInfo.family} </p>) : (<p>Family not available </p> )}
       
@@ -45,7 +74,11 @@ return (
           plant befor adding new one
         </p>
       )}
+      </>
+      ):<></>
+      }
 </>
+
 )
 }
 

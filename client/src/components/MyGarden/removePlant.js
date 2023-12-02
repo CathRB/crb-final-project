@@ -1,8 +1,7 @@
 
 //Remove a plant to user library
-const removePlant = (event, plantToRemove, setErrorMessage, removeFromMyGarden, navigate) => {
-   
-
+const removePlant = (event, plantToRemove, removeFromMyGarden, navigate, setErrorMessage) => {
+  
     event.preventDefault();
 
     fetch("/api/remove-plant-myGarden", {
@@ -23,7 +22,8 @@ const removePlant = (event, plantToRemove, setErrorMessage, removeFromMyGarden, 
       .catch((error) => {
          setErrorMessage("Error during removing process", error);
       })
-        } 
+
+         } 
 
 
         export default removePlant
