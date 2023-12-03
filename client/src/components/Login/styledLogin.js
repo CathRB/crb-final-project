@@ -13,15 +13,18 @@ position: absolute;
 `;
 
 export const Title = styled.h1`
+ font-family: 'Poppins', sans-serif;
+ color: #034925;
 `
 
 export const Form = styled.form`
  background-color: #fff;
   padding: 20px;
   border-radius: 8px;
+  border: solid 1px #034925;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  width: 40vw;
-  height: 50vh;
+  width: 35vw;
+  height: 55vh;
   text-align: center;
   display: flex;
   flex-direction: column; 
@@ -44,15 +47,21 @@ export const Label = styled.label`
   margin-bottom: 20px;
   margin-left:20px;
   text-align: left;
+  font-size: 18px;
+  color: #034925;
+  font-weight:600;
 
 `;
 
 export const Input = styled.input`
   margin-top: 20px;
   margin-bottom: 20px;
-margin-right: 20px;
+  margin-right: 20px;
   width: 300px;
-  height: 20px;
+  height: 30px;
+  border: solid 1px  #034925;
+  font-size: 16px;
+ 
 
   :focus{
     border-color : hsl(333deg, 100%, 44%);
@@ -62,8 +71,25 @@ margin-right: 20px;
 `;
 
 export const Button = styled.button`
+  min-width: 8vw;
+  min-height: 3vh;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  cursor: pointer;
+border: solid 2px  #486454;
+color: #9c7a6d;
+font-size: 1.1em;
+font-weight: 600;
+font-family: 'Poppins', sans-serif;
+background-color: #9acbaf;
+margin-top: 3vh;
+margin-bottom: 2vh;
 `;
 
+export const BottomLink=styled.p`
+  font-size: 18px;
+  color: #034925;
+  font-weight:600;
+`
 
 export const ErrorMessage = styled.p`
  font-family: 'Poppins', sans-serif;
@@ -73,6 +99,6 @@ export const ErrorMessage = styled.p`
 `;
 
 export default {
-  Background,  Title, Form, Container, Label, Input, Button, ErrorMessage,  
+  Background,  Title, Form, Container, Label, Input, Button, ErrorMessage,  BottomLink,
 
 };

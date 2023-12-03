@@ -15,7 +15,7 @@ const useGetPlants = (plantName, plantsData, setPlantsData, totalPages, setTotal
             setTotalPages(Math.ceil(response.dataMeta.total / 20));
             if (response.dataMeta.total < 21) {
               setNextPage(true);
-            } else {
+                } else {
               setNextPage(false);
             }
           } else {
@@ -24,7 +24,7 @@ const useGetPlants = (plantName, plantsData, setPlantsData, totalPages, setTotal
         })
         .catch((error) => {
           setErrorMessage("Error during searching process", error);
-        });
+        });    
     }
   }, [plantName]);
 

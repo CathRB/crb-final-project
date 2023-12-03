@@ -111,11 +111,7 @@ useEffect(()=> {
     }
     },[plantInfo])
     
-    
-     return (
-      plantInfo
-     )
-     };
+         };
 
 
 

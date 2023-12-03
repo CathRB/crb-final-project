@@ -5,7 +5,7 @@ import loginBackground from "../../assets/registerLoginBackground.jpg"
 import { Link } from 'react-router-dom';
 import sendLogin from "./sendLogin";
 import {
-  Background, Title, Form, Container, Label, Input, Button, ErrorMessage
+  Background, Title, Form, Container, Label, Input, Button, ErrorMessage, BottomLink
 } from "./styledLogin"
 
 
@@ -41,7 +41,7 @@ return (
 
     </Container>
     <Button type="Submit" disabled={sending}>{sending ? "Submitting information" : "Log in"} </Button>
-    <p> If you don't have an account, please go to the {' '} <Link to="/register"> register </Link> {' '}  section</p>
+    <BottomLink> If you don't have an account, please go to the {' '} <Link to="/register"> register </Link> {' '}  section</BottomLink>
     {errorMessage?(
     <ErrorMessage> {errorMessage} </ErrorMessage>
  ): (<></>)}

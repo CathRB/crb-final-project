@@ -13,16 +13,16 @@ const PlantsBrowser = () => {
   const [nextPage, setNextPage] = useState(true);
   const [pageNumber, setPageNumber] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
-  const [displaying, setDisplaying] = useState(null)
- 
+  const [displaying, setDisplaying] = useState(null);
 
   const getPlants = useGetPlants(plantName, plantsData, setPlantsData, totalPages, setTotalPages, setNextPage, setPreviousPage, pageNumber)
+
 
   return (
     <Main>
       <HeaderBox>
       <h1>Plant Search</h1>
-
+<div>
       <input placeholder="Type a plant name" type="text" id="search" />
       <button
         onClick={() => {
@@ -35,14 +35,16 @@ const PlantsBrowser = () => {
       >
         Search
       </button>
+      </div>
       </HeaderBox>
 
       {errorMessage?(
         <ErrorMessage>{errorMessage}</ErrorMessage> 
       ): 
 <>
+
       <DivGrid>
-        {plantsData ? (
+        {plantsData? (
           plantsData.map((plant) => {
               return (
               <Plants
@@ -50,15 +52,13 @@ const PlantsBrowser = () => {
                 plant={plant}
                 displaying={displaying}
                 setDisplaying ={setDisplaying}
-                
                 />
               )  
             })
           ):( <></>)}
+     </DivGrid>
 
-               
-      </DivGrid>
-    
+
       <Footer>
         {plantsData ? (
           <>

@@ -26,7 +26,7 @@ const RegisterPage = () => {
 <>
 <Background src={registerBackground} alt="registerBackground" />
 <Form onSubmit={(event) =>sendRegister( event, setSending, registerInfo, setUser, navigate, setErrorMessage)}>
-<Title>Register your account</Title>
+<Title>Create your account</Title>
     <Container>
     <Label htmlFor = "firstName">First name: </Label>
     <Input required id="firstName" type="text" placeholder = "First name" onChange={(event) => {handleChange(event.target.id, event.target.value);  setErrorMessage(null)}}></Input>

@@ -48,17 +48,17 @@ const GetGardens = ({index, plant, setGardenId, setPlantIndex, handleClickOpen})
           <h2>{plant.commonName}</h2>):(<h2>Common name not available</h2>)}
 
           {plant.scientificName?(
-          <p> Scientific name: {plant.scientificName} </p>): <p>Scientific name not available</p>}
+          <p> <span>Scientific name:</span> {plant.scientificName} </p>): <p>Scientific name not available</p>}
 
           {plant.family?(
-          <p>Family: {plant.family} </p>): <p>Family not available</p>}
+          <p><span>Family:</span> {plant.family} </p>): <p>Family not available</p>}
 
           {plant.vegetable === null || plant.vegetable === "" ?(
-            <p>Vegetable: unknown</p>): plant.vegetable === false?( <p>Vegetable: no</p> ):(<p>Vegetable: {plant.vegetable} </p>)}
+            <p><span>Vegetable: </span> unknown</p>): plant.vegetable === false?( <p><span>Vegetable:</span> no</p> ):(<p><span>Vegetable: </span>{plant.vegetable} </p>)}
 
-          {plant.edible === null || plant.edible === ""?(<p>Edible: unknown</p>): plant.edible === false?(<p>Edible: no</p>):( <p>Edible: yes</p>)}
+          {plant.edible === null || plant.edible === ""?(<p><span>Edible:</span> unknown</p>): plant.edible === false?(<p><span>Edible:</span> no</p>):( <p><span>Edible: </span>yes</p>)}
          
-         {plant.edibleParts?(<p>Edible Parts: {plant.edibleParts.toString("")} </p>): <></>}
+         {plant.edibleParts?(<p><span>Edible Parts:</span> {plant.edibleParts.toString("")} </p>): <></>}
 
           {plant.sources? (
             plant.sources.map ((source)=> {
@@ -66,7 +66,7 @@ const GetGardens = ({index, plant, setGardenId, setPlantIndex, handleClickOpen})
             return (
             <a key={source.name} target="_blank" href= {source.url}>Distribution map</a>
              )
-             }) ): <p>Distribution map: information not available</p>}
+             }) ): <p><sapn>Distribution map: </sapn>information not available</p>}
 
             </GeneralBox>
             
@@ -84,25 +84,25 @@ const GetGardens = ({index, plant, setGardenId, setPlantIndex, handleClickOpen})
           <h2>Recomended care</h2>
 
           {plant.light?(
-          <p>Light: {plant.light} </p>): <p>Light: unknown</p>}
+          <p><span>Light: </span>{plant.light} </p>): <p><span>Light:</span> unknown</p>}
 
           {plant.humidity?(
-          <p>Humidity: {plant.humidity} </p>): <p>Humidity: unknown</p>}
+          <p><span>Humidity:</span> {plant.humidity} </p>): <p><span>Humidity:</span> unknown</p>}
 
-          {plant.phLow && plant.phHight?(<p>Ideal pH between:  {plant.phLow} and {plant.phHight}</p>):( <p>Ideal pH: unknown</p>)}
+          {plant.phLow && plant.phHight?(<p><span>Ideal pH between:</span>  {plant.phLow} and {plant.phHight}</p>):( <p><span>Ideal pH:</span> unknown</p>)}
 
           </RecomandedCareBox>
                         
           <MyCareBox>
           <h2>My care settings</h2>
-          <p>Location: {plant.plantLocation}</p>
-          <p>SunExposition: {plant.sunExposition} </p> 
-          <p>Watering frequency:  {plant.wateringFrequency? (`each ${plant.wateringFrequency} day(s)`): (<></>) }</p>  
-          <p>Last watering: {plant.lastWatering}</p> 
-          <p>Fertilizer name: {plant.fertilizerName}</p>
-          <p>Fertilizer frequency: {plant.fertilizerFrequency? (`each ${plant.fertilizerFrequency} day(s)`): (<></>) } </p>  
-          <p>Last fertilizer add: {plant.lastFertilizing}</p> 
-          <p>Comments: {plant.comments}</p>
+          <p><span>Location:</span> {plant.plantLocation}</p>
+          <p><span>SunExposition:</span> {plant.sunExposition} </p> 
+          <p><span>Watering frequency: </span> {plant.wateringFrequency? (`each ${plant.wateringFrequency} day(s)`): (<></>) }</p>  
+          <p><span>Last watering:</span> {plant.lastWatering}</p> 
+          <p><span>Fertilizer name: </span>{plant.fertilizerName}</p>
+          <p><span>Fertilizer frequency:</span> {plant.fertilizerFrequency? (`each ${plant.fertilizerFrequency} day(s)`): (<></>) } </p>  
+          <p><span>Last fertilizer add: </span>{plant.lastFertilizing}</p> 
+          <p><span>Comments: </span>{plant.comments}</p>
           </MyCareBox>
           </MiddleBox>
 

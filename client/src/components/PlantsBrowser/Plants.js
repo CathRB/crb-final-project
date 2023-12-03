@@ -1,5 +1,5 @@
 import {PlantBox} from "./styledBrowser";
-import { useState } from "react";
+import { useState} from "react";
 import PlantDetails from "./PlantDetails";
 
 
@@ -10,6 +10,7 @@ const Plants = ({plant,  displaying, setDisplaying}) => {
  
   
     return (
+ 
      <PlantBox
         onClick={() => {
           if(displaying === plant.slug) {
@@ -26,7 +27,7 @@ const Plants = ({plant,  displaying, setDisplaying}) => {
     {!showDetails || displaying !== plant.slug ?(
      <>
      {plant.common_name ? ( <p>{plant.common_name}</p>) : (<p>Common name: not available</p> )}
-     {plant.image_url ? (<img src={plant.image_url} alt={plant.common_name} /> ):(<p>pictures not available</p>)}
+     {plant.image_url ? (<img src={plant.image_url} alt={plant.common_name}/> ):(<p>pictures not available</p>)}
      <p>Scientific name: {plant.scientific_name}</p>
      </>
     ):(
@@ -34,12 +35,11 @@ const Plants = ({plant,  displaying, setDisplaying}) => {
     <PlantDetails 
     plantSlug={plant.slug}
     scientificName={plant.scientific_name}
-       
-        />
+    />
        
         )}  
      </PlantBox>
-  
+    
   )
 }
 

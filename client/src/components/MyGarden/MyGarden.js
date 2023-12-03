@@ -5,11 +5,24 @@ import { Link } from 'react-router-dom';
 import MySettingsModal from "./MySettingsModal"
 import GetGardens from "./GetGardens";
 import useSetGardenDisplayAndButtons from "./useSetGardenDisplayAndButtons";
+import emptyGarden from "../../assets/emptyGarden.jpg"
+import cactus from "../../assets/cactus.jpg"
+import login2 from "../../assets/login2.jpg"
+import testGarden from "../../assets/testGarden2.jpg"
+
+
+
+
 import {
   Main,
     DivGrid,
    Footer,
    ErrorMessage,
+   Test,
+   AAA,
+   EmptyGarden,
+   PictureBox,
+         PictureTest
   } from "./styledMyGarden"
 
 
@@ -44,10 +57,30 @@ const handleClose = () => {
 
    return(
      
-        <Main>
-          {errorMessage?(<ErrorMessage> {errorMessage} </ErrorMessage> ): <></>}
+    <Main>
+        
+        {errorMessage?(
+        <>
+        <ErrorMessage> {errorMessage} </ErrorMessage>
+        <img src={emptyGarden} alt={"Garden image"}/> 
+        </> 
+        ) : <></>}
        {loggedInUser? ( <></>
-           ): (<h1>Please log in or set an account to have acces to this feature</h1>) }
+           ): (
+            <>
+         <h1>Please log in or set an account to have acces to this feature</h1>
+         <EmptyGarden src={emptyGarden} alt={"Garden image"}/> 
+
+         <PictureBox>
+         <Test src={testGarden} alt={"Garden image"}/> 
+         </PictureBox>
+         
+         <PictureTest>
+         <AAA src={testGarden} alt={"Garden image"}/>
+         </PictureTest> 
+         
+         </>)
+         }
            {user && user.myGarden.length === 0 ?(
             (<h1>Go to the  {' '} <Link to="/plantsBrowser">plant browser </Link> {' '} and add plant to your garden!</h1>) 
            ):<></>}

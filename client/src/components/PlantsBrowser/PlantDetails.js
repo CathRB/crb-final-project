@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import addPlant from "./addPlant";
 import useGetPlantInfo from "./useGetPlantInfo";
 import useGetLightAndHumiditySentences from "./useGetLightAndHumiditySentences";
+import { Name, Reminder, Light, Loading } from "./styledBrowser";
+
 
 
 const PlantDetails = ({plantSlug, scientificName}) => {
@@ -42,14 +44,14 @@ const PlantDetails = ({plantSlug, scientificName}) => {
     
 {plantInfo?( 
   <>
-      {plantInfo.commonName ? (<p>{plantInfo.commonName}</p>) : (<p>Common name not available </p>)}
-      {plantInfo.family ? (<p>Family: {plantInfo.family} </p>) : (<p>Family not available </p> )}
+      {plantInfo.commonName ? (<Name>{plantInfo.commonName}</Name>) : (<p>Common name not available </p>)}
+      {plantInfo.family ? (<p><span>Family:</span> {plantInfo.family} </p>) : (<p> <span>Family:</span> not available </p> )}
       
-      {plantInfo.light ? (<p> Light: {plantInfo.light} </p>) : (<p> Light: unknown</p>)}
+      {plantInfo.light ? (<Light> <span>Light:</span> {plantInfo.light} </Light>) : (<p> <span>Light:</span> unknown</p>)}
 
-      {plantInfo.humidity ? (<p> Humidity: {plantInfo.humidity} </p>) : (<p> Humidity: unknown </p>)}
+      {plantInfo.humidity ? (<p> <span>Humidity:</span> {plantInfo.humidity} </p>) : (<p> <span>Humidity:</span> unknown </p>)}
 
-      {plantInfo.phLow && plantInfo.phHight ? (<p>Ideal pH between: {plantInfo.phLow} and {plantInfo.phHight} </p>) : (<p> Ideal pH between: unknown </p>)}
+      {plantInfo.phLow && plantInfo.phHight ? (<p> <span>Ideal pH between:</span> {plantInfo.phLow} and {plantInfo.phHight} </p>) : (<p> <span>Ideal pH between:</span> unknown </p>)}
 
       {plantInfo.sources ? (
         plantInfo.sources.map((source) => {
@@ -60,22 +62,22 @@ const PlantDetails = ({plantSlug, scientificName}) => {
               </a>
             );
         })
-      ) : (<p>Distribution map: information not available</p>)}
+      ) : (<p><span>Distribution map:</span> information not available</p>)}
 
       {!user ? (
-        <p> Please log in to add this plant to your garden </p>
+        <Reminder> Please log in to add this plant to your garden </Reminder>
       ) : user && user.myGarden.length < 10 ? (
         <button onClick={(event) => addPlant(event, addPlantData, addToMyGarden, navigate, setErrorMessage, setAdding)} disabled={adding}>
           {adding ? "Adding plant" : "Add to My Garden"}
         </button>
       ) : (
-        <p>
+        <Reminder>
           Sorry you reached the plant limit in your garden. Please remove
           plant befor adding new one
-        </p>
+        </Reminder>
       )}
       </>
-      ):<></>
+      ):<Loading>Loading...</Loading>
       }
 </>
 
