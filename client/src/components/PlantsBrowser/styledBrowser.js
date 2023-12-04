@@ -17,6 +17,11 @@ h1{
  margin-bottom: 4vh;
  color: #034925;
  font-size: 3em;
+
+
+ @media (max-width: 600px) {
+  font-size: 1.5em;
+  }
 }
 
 input{
@@ -31,9 +36,15 @@ input{
   margin-bottom: 5vh;
   margin-right: 1vw;
 
+  @media (max-width: 1200px) {
+    font-size: 1.4em;
+    min-width: 40vw;
+  }
+
   @media (max-width: 600px) {
   margin-left: 0;
   margin-bottom: 2vh;
+  font-size: 1.2em;
   }
 }
 
@@ -51,9 +62,15 @@ background-color: #9acbaf;
 margin-left: 1vw;
 margin-bottom: 5vh;
 
+@media (max-width: 1200px) {
+    font-size: 1.4em;
+  
+  }
+
 @media (max-width: 600px) {
   margin-left: 0;
   margin-bottom: 2vh;
+  font-size: 1.2em;
   }
 }
 
@@ -109,7 +126,7 @@ export const PlantBox = styled.div`
   }
 
   @media (max-width: 600px) {
-    max-width: 330px;
+    max-width: 290px;
     min-height: 415px;
     margin: 0 0 20px 0;
   }
@@ -163,8 +180,24 @@ font-weight: 600;
 font-family: 'Poppins', sans-serif;
 background-color: #9acbaf;
 cursor: pointer;
+
+@media (max-width: 1200px) {
+    font-size: 1.1em;
+    }
+    @media (max-width: 600px) {
+    font-size: 1em;
+    }
 }
 
+a{
+  @media (max-width: 1200px) {
+    font-size: 1.3em;
+    }
+
+    @media (max-width: 600px) {
+    font-size: 1.1em;
+    }
+    }
 `;
 
 export const Name = styled.p`
@@ -211,7 +244,6 @@ min-height: 415px;
 }
 `;
 
-
 export const Footer = styled.footer`
 display: flex;
 justify-content: center;
@@ -223,8 +255,15 @@ p{
   margin-right: 30px;
   font-weight: 700;
   font-size: 16px;
-   
-}
+
+  @media (max-width: 1200px) {
+    font-size: 1.4em;
+    }
+
+    @media (max-width: 600px) {
+    font-size: 0.9em;
+    }
+   }
 
 button{
 width: 120px;
@@ -236,6 +275,16 @@ font-weight: 600;
 font-family: 'Poppins', sans-serif;
 background-color: #9acbaf;
 cursor: pointer;
+
+@media (max-width: 1200px) {
+    font-size: 1.4em;
+    width: 30vw;
+    }
+
+    @media (max-width: 600px) {
+    font-size: 0.9em;
+    width: 35vw;
+    }
 
 &:disabled{
 opacity:0.3;

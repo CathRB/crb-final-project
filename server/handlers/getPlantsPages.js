@@ -1,5 +1,3 @@
- //to use to acces pages
- // const fetchResponse = await fetch(`https://trefle.io/api/v1/plants/search?token=${key}&page=2&q=${plantName}`);
 
  const fetch = require("node-fetch");
  require("dotenv").config();

@@ -26,17 +26,11 @@ import dayjs from 'dayjs';
 
 
 
-const MySettingsModal = ({open, handleClose, userId, myGardenId, plantIndex}) => {
-  const { user, updateMyGarden, setErrorMessage} = useContext(UserContext)
-   const [personalSettings, setPersonalSettings] = useState({userId,...user.myGarden[plantIndex] })
-   const [wateringDate, setWateringDate]=useState(null)
-   const [fertilizingDate, setFertilizingDate]=useState(null)
+const MySettingsModal = ({open, handleClose, userId,  personalSettings, setPersonalSettings}) => {
+  const {updateMyGarden, setErrorMessage} = useContext(UserContext)
+  const [wateringDate, setWateringDate]=useState(null)
+  const [fertilizingDate, setFertilizingDate]=useState(null)
 
-   
-useEffect (() => {
-  setPersonalSettings({userId, sunExposition: "",...user.myGarden[plantIndex] })
-  
-}, [plantIndex])
 
 
 useEffect (() => {
@@ -213,7 +207,7 @@ color="success"
         </DialogContent>
         <DialogActions>
           <Button sx={{color: "green"}} onClick={()=> {setPersonalSettings(userId), handleClose()}}>Cancel</Button>
-          <Button   sx={{color: "green"}} onClick= {(event) => {addPersonalSettings(event, personalSettings, myGardenId, updateMyGarden, handleClose, setErrorMessage)}}>Save changes</Button>
+          <Button   sx={{color: "green"}} onClick= {(event) => {addPersonalSettings(event, personalSettings, personalSettings.myGardenId, updateMyGarden, handleClose, setErrorMessage)}}>Save changes</Button>
         </DialogActions>
       </Dialog>
         </React.Fragment>

@@ -15,7 +15,6 @@ position: absolute;
   @media (max-width: 600px) {
    min-height: 120vh;
     }
-
 `;
 
 export const Title = styled.h1`
@@ -56,7 +55,7 @@ export const Form = styled.form`
     width: 75vw;
     min-height: 58vh;
     margin-left: 20vw;
-    margin-top: 20vh;
+    margin-top: 25vh;
       justify-content: flex-start
   }
 `;
@@ -69,7 +68,6 @@ export const Container = styled.div`
   @media (max-width: 600px) {
   grid-template-columns: 1fr ;
   }
-
 `;
 
 export const Label = styled.label`
@@ -90,7 +88,6 @@ export const Label = styled.label`
     font-size: 0.9em;
     margin: 0;
       }
-
 `;
 
 export const Input = styled.input`
@@ -145,7 +142,6 @@ margin-bottom: 2vh;
     min-width: 30vw;
     min-height: 4vh;
   }
-
 `;
 
 export const BottomLink=styled.p`
@@ -160,8 +156,7 @@ export const BottomLink=styled.p`
    @media (max-width: 600px) {
     font-size: 1.1em;
    }
-  
-`;
+  `;
 
 export const ErrorMessage = styled.p`
  font-family: 'Poppins', sans-serif;
@@ -176,10 +171,8 @@ export const ErrorMessage = styled.p`
    @media (max-width: 600px) {
     font-size: 1.1em;
    }
-
 `;
 
 export default {
   Background,  Title, Form, Container, Label, Input, Button, ErrorMessage,  BottomLink,
-
 };

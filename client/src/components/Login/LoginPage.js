@@ -4,9 +4,7 @@ import { UserContext } from "../Context/UserContext";
 import loginBackground from "../../assets/registerLoginBackground.jpg"
 import { Link } from 'react-router-dom';
 import sendLogin from "./sendLogin";
-import {
-  Background, Title, Form, Container, Label, Input, Button, ErrorMessage, BottomLink
-} from "./styledLogin"
+import {Background, Title, Form, Container, Label, Input, Button, ErrorMessage, BottomLink} from "./styledLogin"
 
 
 const LoginPage = () => {

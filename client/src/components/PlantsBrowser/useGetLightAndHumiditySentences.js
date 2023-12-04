@@ -110,10 +110,7 @@ useEffect(()=> {
     setPlantInfo({...plantInfo, light, humidity})
     }
     },[plantInfo])
-    
-         };
-
-
+             };
 
      export default useGetLightAndHumiditySentences
 

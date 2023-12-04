@@ -25,7 +25,7 @@ import {
   } from "./styledMyGarden"
 
    
-const GetGardens = ({index, plant, setGardenId, setPlantIndex, handleClickOpen}) => {
+const GetGardens = ({plant, handleClickOpen, setPersonalSettings, userId}) => {
     const [removeButton, setRemoveButton]=useState("")
     const [yesNoButton, setYesNoButton]=useState("none")
     const [plantToRemove, setPlantToRemove]=useState()
@@ -109,10 +109,10 @@ const GetGardens = ({index, plant, setGardenId, setPlantIndex, handleClickOpen})
           <BottomBox>
             {plant.plantLocation || plant.sunExposition || plant.wateringFrequency || plant.lastWatering || plant.fertilizerName || plant.fertilizerFrequency || plant.lastFertilizing || plant.comments? (
             
-            <SettingsButton style={{ display: removeButton }} onClick={()=>{setGardenId(plant.myGardenId); setPlantIndex(index); handleClickOpen();}}>Change my personal settings</SettingsButton>
-         ): (<SettingsButton  style={{ display: removeButton }} onClick={()=>{setGardenId(plant.myGardenId); setPlantIndex(index); handleClickOpen()}}>Add my personal settings</SettingsButton>)}
+            <SettingsButton style={{ display: removeButton }} onClick={()=>{setPersonalSettings({userId, ...plant}); handleClickOpen();}}>Change my personal settings</SettingsButton>
+         ): (<SettingsButton  style={{ display: removeButton }} onClick={()=>{setPersonalSettings({userId, ...plant}); handleClickOpen()}}>Add my personal settings</SettingsButton>)}
             
-            
+
           
           
           <GarbageButton style={{ display: removeButton }}onClick={() => {setPlantToRemove({userId: user._id, myGardenId: plant.myGardenId}); setRemoveButton("none"); setYesNoButton("")}}><img src={rubbish} alt={"trash"}/></GarbageButton>

@@ -7,7 +7,7 @@ export const UserContext =  createContext(null);
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState("test")
   const loggedInUser =  sessionStorage.getItem("user")
 
 
@@ -49,7 +49,6 @@ const removeFromMyGarden = (myGardenId) => {
  const remaningGarden = user.myGarden.filter((garden) => {
    return (garden.myGardenId !== myGardenId)
   })
- console.log(remaningGarden)
   setUser({...user, myGarden: remaningGarden})
 }
 

@@ -30,7 +30,7 @@ useEffect(() => {
       <HeaderBox>
       <h1>🪴Search a plant!🪴</h1>
 <div>
-      <input placeholder="Type a plant name" type="text" id="search" onChange={() => {setErrorMessage(null)}}/>
+      <input placeholder="Type a plant name" type="text" id="search" />
       <button
         onClick={() => {
           setPlantName(search.value),

@@ -22,7 +22,7 @@ const {email, password} = request.body;
 
     const verifyPasswords = await bcrypt.compare(password, userInfo.encryptedPassword);
 
-    //Verify if user already exist //Verify if encrypted password and password are the same //split
+   
     if(!verifyPasswords)
     return response.status(404).json({status:404, message: "Invalide email or password please try again or go to register section if you don't have an account."})
     

@@ -9,9 +9,6 @@ import emptyGarden from "../../assets/emptyGarden.jpg"
 import emptyGardenSides from "../../assets/emptyGardenSides.jpg"
 
 
-
-
-
 import {
   Main,
   DivGrid,
@@ -26,16 +23,14 @@ import {
 
 const MyGarden = () => {
     
-
+const {user, loggedInUser, errorMessage, setErrorMessage} = useContext(UserContext)
 const [previousPage, setPreviousPage] = useState(true);
 const [nextPage, setNextPage] = useState(true);
 const [pageNumber, setPageNumber] = useState(1);
 const [totalPages, setTotalPages] = useState(null);
-const [gardenId, setGardenId] = useState(null);
-const [plantIndex, setPlantIndex] = useState(null);
 const [open, setOpen] = useState(false);
 const [gardenToDisplay, setGardenToDisplay] = useState(null);
-const {user, loggedInUser, errorMessage, setErrorMessage} = useContext(UserContext)
+const [personalSettings, setPersonalSettings] = useState({})
 
 const date = new Date()
 let dateMDY = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
@@ -48,9 +43,7 @@ const handleClose = () => {
   setOpen(false);
 };
 
-
   useSetGardenDisplayAndButtons (setTotalPages, pageNumber, totalPages, setNextPage, setPreviousPage,  setGardenToDisplay)
-
 
    return(
      
@@ -88,7 +81,7 @@ const handleClose = () => {
            
               <DivGrid>
                {user?(
-              <MySettingsModal open={open} handleClose={handleClose} userId={user._id} myGardenId={gardenId} plantIndex={plantIndex}/> 
+              <MySettingsModal open={open} handleClose={handleClose} userId={user._id}  personalSettings={personalSettings} setPersonalSettings={setPersonalSettings}/> 
                ): <></>}
                 
               {gardenToDisplay? (
@@ -96,11 +89,10 @@ const handleClose = () => {
                return(
               <GetGardens 
               key={plant.myGardenId}
-              index={index}
               plant={plant}
-              setGardenId={setGardenId}
-              setPlantIndex={setPlantIndex}
               handleClickOpen = {handleClickOpen}
+              setPersonalSettings={setPersonalSettings}
+              userId={user._id}
                  />
               )}
               )

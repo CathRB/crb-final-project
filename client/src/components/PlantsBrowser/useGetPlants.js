@@ -11,7 +11,6 @@ useEffect(() => {
     fetch("/api/get-complete-database")
       .then((response) => response.json())
       .then((response) => {
-        console.log("status", response.status)
         if (response.status === 200) {
            setPlantsData(response.data);
           setTotalPages(Math.ceil(response.dataMeta.total / 20));
@@ -29,8 +28,6 @@ useEffect(() => {
       });    
   }
 }, []);
-
-
 
 
 
@@ -67,7 +64,6 @@ useEffect(() => {
         .then((response) => response.json())
         .then((response) => {
           if (response.status === 200) {
-            console.log("message",response.message)
             setPlantsData(response.data);
           } else setErrorMessage(response.message);
         })

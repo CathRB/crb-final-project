@@ -20,7 +20,7 @@ h1{
   export const EmptyGardenBox=styled.div`
   display: flex;
   flex-direction: row;
-  `
+  `;
 
 export const EmptyGarden = styled.img`
   display: block;
@@ -133,7 +133,6 @@ export const PlantPicture=styled.img`
    width: 87.5vw;
     border-radius: 20px
 }
-
 `;
   
 export const TaskIcon=styled.img`
@@ -146,7 +145,6 @@ padding-top: 20px;
 @media (max-width: 600px) {
   padding-left: 12vw;;
 }
-
 `;
 
 
@@ -214,7 +212,6 @@ justify-content: flex-start;
 justify-content: flex-start;
 flex-direction: column
 }
-
 `;
 
 
@@ -244,6 +241,7 @@ export const GarbageButton=styled.button`
 border: none;
 background-color: transparent;
 margin-bottom: 3px;
+cursor: pointer;
 
 @media (max-width: 1600px) {
   margin-right: 1vw;
@@ -273,6 +271,7 @@ font-family: 'Poppins', sans-serif;
 background-color: #9acbaf;
 margin-bottom: 5px;
 margin-right: 150px;
+cursor: pointer;
 
 
 @media (max-width: 1600px) {
@@ -303,6 +302,14 @@ p{
     font-weight: 700;
     font-size: 16px;
     
+    @media (max-width: 1200px) {
+  font-size:1.3em;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.9em;
+  }
+
    }
 
 button{
@@ -314,15 +321,17 @@ font-size: 14px;
 font-weight: 600;
 font-family: 'Poppins', sans-serif;
 background-color: #9acbaf;
+cursor: pointer;
 
 
 @media (max-width: 1200px) {
-  font-size: 1.2em;
-  min-width: 20vw;
-  }
+  font-size:1.3em;
+  width: 20vw;
+   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 600px) {
   font-size: 0.9em;
+  width: 35vw;
 
   }
 
@@ -330,7 +339,6 @@ background-color: #9acbaf;
   opacity:0.3;
 }
 }
-
 `;
 
 export const YesNoButton=styled.button`
@@ -346,6 +354,7 @@ background-color: #9acbaf;
 margin-left: 10px;
 margin-right: 10px;
 margin-bottom: 10px;
+cursor: pointer;
 
 &:disabled{
   opacity:0.3;

@@ -56,6 +56,7 @@ color: #e29578;
 font-size: 1.5em;
 font-weight: 600;
 font-family: 'Poppins', sans-serif;
+cursor: pointer;
 
 @media (max-width: 1200px) {
   font-size: 1.3em;

@@ -55,7 +55,6 @@ export const Form = styled.form`
     justify-content: flex-start;
     margin-top: 28vh;
   }
-
 `;
 
 export const Container = styled.div`
@@ -66,7 +65,6 @@ export const Container = styled.div`
   @media (max-width: 600px) {
   grid-template-columns: 1fr ;
   }
-
 `;
 
 export const Label = styled.label`
@@ -86,7 +84,6 @@ export const Label = styled.label`
     font-size: 0.9em;
     margin: 0;
       }
-
 `;
 
 export const Input = styled.input`
@@ -141,7 +138,6 @@ margin-bottom: 2vh;
     min-width: 30vw;
     min-height: 4vh;
   }
-
 `;
 
 export const ErrorMessage = styled.p`
@@ -162,5 +158,4 @@ export const ErrorMessage = styled.p`
 
 export default {
     Background, Title, Form, Container, Label, Input, Button, ErrorMessage,
-
 };

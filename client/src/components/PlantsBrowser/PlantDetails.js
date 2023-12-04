@@ -34,7 +34,7 @@ const PlantDetails = ({plantSlug, scientificName}) => {
         }
       : null;
 
-      console.log()
+    
 
   useGetPlantInfo(plantSlug, setPlantInfo);
   useGetLightAndHumiditySentences(setPlantInfo, plantInfo);

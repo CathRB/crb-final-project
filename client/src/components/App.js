@@ -15,7 +15,7 @@ return(
         <Route path="/myGarden" element={<MyGarden/>}/>
         <Route path="/plantsBrowser" element={<PlantsBrowser/>}/>
         <Route path="/register" element={<RegisterPage/>}/>
-        <Route path="/LogIn" element={<LoginPage/>}/>
+        <Route path="/logIn" element={<LoginPage/>}/>
     </Routes>
     </BrowserRouter>
 )

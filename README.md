@@ -2,15 +2,15 @@
 
 ## Summary
 
-This app is a plant browser and a user's plant library. Browser section can be use without registration and give you acces to plant informations from Trefle API. Logged user have acces to the special feature My Garden. In this section you can store plant, have access to plant information with recommended care and set your own plant data and care parameters. You also have acces to a task reminder for water and fertilizer.
+This website is a plant browser and a user's plant library. Browser section can be use without registration and give you access to plant information from Trefle API. Logged user can use the special feature My Garden. In this section you can store plant, get plant information with recommended care and set your own plant data and care parameters. You also have acces to a task reminder for water and fertilizer.
 
 ## Features
--Plant Browser
--Access to plant informations
--Create your own library
--Access to recommended care
--Option to store personal data and care settings
--Task reminder for water and fertilizer
+- Plant Browser
+- Access to plant information
+- Create your own library
+- Access to recommended care
+- Option to store personal data and care settings
+- Task reminder for water and fertilizer
 
 
 ## API
@@ -44,7 +44,7 @@ When you first navigate to this page you get acces to the whole database of plan
 
 ## My Garden
 
-This section is reserved to registered user. In this section you have access to your plant library stored in MongoDB. Displayed on screen you can see picture, general information and recommended care. You also have the option to add you own data about the plant (ex: location in the house, sun exposition, fertilizer name, comments, etc.). In this personnal care section you can also set the watering and fertilizing frequency as well as the last date those task were done. This set up the reminder icon on the top of the thumbnail that alert you when a task is due.  
+This section is reserved to registered user. In this section you have access to your plant library stored in MongoDB. Displayed on screen you can see picture, general information and recommended care. You also have the option to add you own data about the plant (ex: location in the house, sun exposition, fertilizer name, comments, etc.). In this personal care section you can also set the watering and fertilizing frequency as well as the last date those tasks were done. This set up the reminder icon on the top of the thumbnail that alert you when a task is due.  
 
 <img src="./client/src/assets/myGarden1.png" width="200" height="auto">
 <img src="./client/src/assets/myGarden2.png" width="200" height="auto">
