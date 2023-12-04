@@ -10,21 +10,31 @@ position: absolute;
   object-fit: cover;
   z-index: -1;
   opacity: 0.5;
+
+
+  @media (max-width: 600px) {
+   min-height: 120vh;
+    }
+
 `;
 
 export const Title = styled.h1`
  font-family: 'Poppins', sans-serif;
  color: #034925;
-`
+
+ @media (max-width: 1200px) {
+    font-size: 2em;
+  }
+ `;
 
 export const Form = styled.form`
  background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  border: solid 1px #034925;
+  border: solid 3px #034925;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
   width: 35vw;
-  height: 55vh;
+  min-height: 55vh;
   text-align: center;
   display: flex;
   flex-direction: column; 
@@ -34,12 +44,32 @@ export const Form = styled.form`
   top: 50%;
   left: 30%;
   transform: translate(-50%, -50%);
+
+  @media (max-width: 1200px) {
+    top: 40%;
+    width: 80vw;
+    min-height: 45vh;
+    margin-left: 21vw;
+      }
+
+  @media (max-width: 600px) {
+    width: 75vw;
+    min-height: 58vh;
+    margin-left: 20vw;
+    margin-top: 20vh;
+      justify-content: flex-start
+  }
 `;
 
 export const Container = styled.div`
  display: grid;
   grid-auto-rows: 1fr;
   grid-template-columns: 1fr 1fr;
+
+  @media (max-width: 600px) {
+  grid-template-columns: 1fr ;
+  }
+
 `;
 
 export const Label = styled.label`
@@ -50,6 +80,16 @@ export const Label = styled.label`
   font-size: 18px;
   color: #034925;
   font-weight:600;
+
+  @media (max-width: 1200px) {
+    font-size: 1.6em;
+  
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.9em;
+    margin: 0;
+      }
 
 `;
 
@@ -62,6 +102,16 @@ export const Input = styled.input`
   border: solid 1px  #034925;
   font-size: 16px;
  
+  @media (max-width: 1200px) {
+    font-size: 1.6em;
+    width: 34vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.8em;
+    margin: -2vh 0 3vh 0;
+    width: 200px;
+  }
 
   :focus{
     border-color : hsl(333deg, 100%, 44%);
@@ -83,19 +133,50 @@ font-family: 'Poppins', sans-serif;
 background-color: #9acbaf;
 margin-top: 3vh;
 margin-bottom: 2vh;
+
+@media (max-width: 1200px) {
+    font-size: 1.6em;
+    min-width: 30vw;
+    min-height: 3.5vh;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.9em;
+    min-width: 30vw;
+    min-height: 4vh;
+  }
+
 `;
 
 export const BottomLink=styled.p`
   font-size: 18px;
   color: #034925;
   font-weight:600;
-`
+
+  @media (max-width: 1200px) {
+    font-size: 1.6em;
+   }
+
+   @media (max-width: 600px) {
+    font-size: 1.1em;
+   }
+  
+`;
 
 export const ErrorMessage = styled.p`
  font-family: 'Poppins', sans-serif;
  text-align: center;
  font-size: 1.1em;
  color: red;
+
+ @media (max-width: 1200px) {
+    font-size: 1.6em;
+   }
+
+   @media (max-width: 600px) {
+    font-size: 1.1em;
+   }
+
 `;
 
 export default {

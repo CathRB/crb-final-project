@@ -1,5 +1,5 @@
 import { useEffect} from "react";
-import {useContext, useState} from "react"
+import {useContext} from "react"
 import { UserContext } from "../Context/UserContext";
 
 const useGetPlantInfo = (plantSlug, setPlantInfo) => {

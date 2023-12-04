@@ -30,7 +30,7 @@ return (
 <Background src={loginBackground} alt="loginBackground" />
 <Form onSubmit= {(event) =>sendLogin( event, setSending, logInfo, setUser, navigate, setErrorMessage)}>
 
-<Title>Log into your account</Title>
+<Title>Log in</Title>
     <Container>
    
     <Label htmlFor = "email">Email address: </Label>
@@ -41,7 +41,7 @@ return (
 
     </Container>
     <Button type="Submit" disabled={sending}>{sending ? "Submitting information" : "Log in"} </Button>
-    <BottomLink> If you don't have an account, please go to the {' '} <Link to="/register"> register </Link> {' '}  section</BottomLink>
+    <BottomLink> If you don't have an account, please go to the {' '} <Link to="/register" onClick={() => {setErrorMessage(null)}}> register </Link> {' '}  section</BottomLink>
     {errorMessage?(
     <ErrorMessage> {errorMessage} </ErrorMessage>
  ): (<></>)}

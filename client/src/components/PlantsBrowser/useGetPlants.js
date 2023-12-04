@@ -4,6 +4,36 @@ import { UserContext } from "../Context/UserContext";
 const useGetPlants = (plantName, plantsData, setPlantsData, totalPages, setTotalPages, setNextPage, setPreviousPage, pageNumber) => {
   const {setErrorMessage} = useContext(UserContext)
 
+
+//Get all plants in the database (in asc. oderder of common name) when landing on this page 
+useEffect(() => {
+  if (!plantName) {
+    fetch("/api/get-complete-database")
+      .then((response) => response.json())
+      .then((response) => {
+        console.log("status", response.status)
+        if (response.status === 200) {
+           setPlantsData(response.data);
+          setTotalPages(Math.ceil(response.dataMeta.total / 20));
+          if (response.dataMeta.total < 21) {
+            setNextPage(true);
+              } else {
+            setNextPage(false);
+          }
+        } else {
+          setErrorMessage(response.message);
+        }
+      })
+      .catch((error) => {
+        setErrorMessage("Error during searching process", error);
+      });    
+  }
+}, []);
+
+
+
+
+
 //Get plants from a search name (page 1)
   useEffect(() => {
     if (plantName) {

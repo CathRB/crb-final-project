@@ -26,7 +26,7 @@ const RegisterPage = () => {
 <>
 <Background src={registerBackground} alt="registerBackground" />
 <Form onSubmit={(event) =>sendRegister( event, setSending, registerInfo, setUser, navigate, setErrorMessage)}>
-<Title>Create your account</Title>
+<Title>Create a new account</Title>
     <Container>
     <Label htmlFor = "firstName">First name: </Label>
     <Input required id="firstName" type="text" placeholder = "First name" onChange={(event) => {handleChange(event.target.id, event.target.value);  setErrorMessage(null)}}></Input>
@@ -40,7 +40,7 @@ const RegisterPage = () => {
     <Label htmlFor = "password">Password: </Label>
     <Input required id="password" type="password" placeholder = "Password" onChange={(event) =>{handleChange(event.target.id, event.target.value); setErrorMessage(null)}}></Input>
 
-    <Label htmlFor = "confirmPassword">Email: </Label>
+    <Label htmlFor = "confirmPassword">Password confirmation</Label>
     <Input required id="confirmPassword" type="password" placeholder = "Confirm your password" onChange={(event) => {handleChange(event.target.id, event.target.value);  setErrorMessage(null)}}></Input>
     </Container>
     <Button type="Submit" disabled={sending}>{sending ? "Submitting information" : "Regsiter"} </Button>

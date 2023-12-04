@@ -13,6 +13,7 @@ const {addPlantMyGarden} = require ("./handlers/addPlantMyGarden");
 const {removePlantMyGarden} = require ("./handlers/removePlantMyGarden");
 const {getUserInfoForSession} = require ("./handlers/getUserInfoForSession")
 const {addUserComments} = require ("./handlers/addUserComments")
+const {getCompleteDatabase} = require ("./handlers/getCompleteDatabase")
 
 express()
   .use(express.json())
@@ -24,6 +25,9 @@ express()
     .get("/api/get-plants/:plantName", getPlants)
     .get("/api/get-plantInfo/:plantSlug", getPlantInfo)
     .get("/api/get-plantsPages/:pageNumber/:plantName", getPlantsPages)
+   
+    //Plant Brwoser (get all plants in the database in asc. oderder of common name)
+    .get("/api/get-complete-database", getCompleteDatabase)
     
 
   //Regsiter and Log in

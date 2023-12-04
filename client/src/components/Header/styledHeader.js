@@ -12,6 +12,7 @@ min-height: 10vh;
 @media (max-width: 600px) {
   display: flex;
  flex-direction: column;
+ min-height: 22vh;
 }
 
 p{
@@ -19,6 +20,10 @@ color: #e29578;
 font-size: 1.5em;
 font-weight: 600;
 font-family: 'Poppins', sans-serif;
+
+@media (max-width: 1200px) {
+  font-size: 1.3em;
+}
 
 @media (max-width: 600px) {
   font-size: 1em;
@@ -34,8 +39,12 @@ font-size: 1.5em;
 font-weight: 600;
 font-family: 'Poppins', sans-serif;
 
+@media (max-width: 1200px) {
+  font-size: 1.3em;
+}
+
 @media (max-width: 600px) {
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 `;
@@ -48,8 +57,12 @@ font-size: 1.5em;
 font-weight: 600;
 font-family: 'Poppins', sans-serif;
 
+@media (max-width: 1200px) {
+  font-size: 1.3em;
+}
+
 @media (max-width: 600px) {
-  font-size: 0.9em;
+  font-size: 1em;
 }
 `;
 

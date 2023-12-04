@@ -96,7 +96,7 @@ const GetGardens = ({index, plant, setGardenId, setPlantIndex, handleClickOpen})
           <MyCareBox>
           <h2>My care settings</h2>
           <p><span>Location:</span> {plant.plantLocation}</p>
-          <p><span>SunExposition:</span> {plant.sunExposition} </p> 
+          <p><span>Sun exposition:</span> {plant.sunExposition} </p> 
           <p><span>Watering frequency: </span> {plant.wateringFrequency? (`each ${plant.wateringFrequency} day(s)`): (<></>) }</p>  
           <p><span>Last watering:</span> {plant.lastWatering}</p> 
           <p><span>Fertilizer name: </span>{plant.fertilizerName}</p>

@@ -72,8 +72,8 @@ const PlantDetails = ({plantSlug, scientificName}) => {
         </button>
       ) : (
         <Reminder>
-          Sorry you reached the plant limit in your garden. Please remove
-          plant befor adding new one
+          Sorry you reached the plant limit in your garden. Please remove a
+          plant before adding new one.
         </Reminder>
       )}
       </>

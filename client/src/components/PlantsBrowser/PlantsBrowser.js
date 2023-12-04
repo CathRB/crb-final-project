@@ -1,8 +1,9 @@
-import { useState, useContext} from "react";
+import { useEffect, useState, useContext} from "react";
 import { UserContext } from "../Context/UserContext";
 import Plants from "./Plants";
-import { Main, HeaderBox,  DivGrid, Footer, ErrorMessage } from "./styledBrowser";
+import { Main, HeaderBox,  DivGrid, Footer, ErrorMessage} from "./styledBrowser";
 import useGetPlants from "./useGetPlants";
+
 
 
 const PlantsBrowser = () => {
@@ -18,12 +19,18 @@ const PlantsBrowser = () => {
   const getPlants = useGetPlants(plantName, plantsData, setPlantsData, totalPages, setTotalPages, setNextPage, setPreviousPage, pageNumber)
 
 
+useEffect(() => {
+  if (!plantName) {
+    getPlants}
+}, [])
+
+
   return (
     <Main>
       <HeaderBox>
-      <h1>Plant Search</h1>
+      <h1>🪴Search a plant!🪴</h1>
 <div>
-      <input placeholder="Type a plant name" type="text" id="search" />
+      <input placeholder="Type a plant name" type="text" id="search" onChange={() => {setErrorMessage(null)}}/>
       <button
         onClick={() => {
           setPlantName(search.value),
@@ -55,8 +62,9 @@ const PlantsBrowser = () => {
                 />
               )  
             })
-          ):( <></>)}
+          ):(<></>)}
      </DivGrid>
+
 
 
       <Footer>
@@ -84,6 +92,8 @@ const PlantsBrowser = () => {
           <></>
         )}
          </Footer>
+        
+         
          </>  }
     </Main>
   );

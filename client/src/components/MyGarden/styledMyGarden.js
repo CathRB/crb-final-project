@@ -6,7 +6,7 @@ background-color:#c0d4b4;
 max-width: 100vw;
 min-height: 86vh;
 margin-top: 15px;
-padding-bottom: 7vh;
+overflow: hidden;
 
 h1{
   font-family: 'Poppins', sans-serif;
@@ -14,17 +14,33 @@ h1{
   font-size: 26px;
    font-style: bold;
    color: #034925;
-   padding-top: 2vh;
-}
+   }
+  `;
 
-`;
+  export const EmptyGardenBox=styled.div`
+  display: flex;
+  flex-direction: row;
+  `
 
 export const EmptyGarden = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 30%;
+  width: 48.5%;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  border-radius: 5px;
 
+  @media (max-width: 1600px) {
+    width: 67%;
+  }
+
+  @media (max-width: 1200px) {
+    width: 90%;
+  }
+
+  @media (max-width: 600px) {
+    width: 90%;
+  }
 `;
 
 
@@ -53,7 +69,7 @@ export const PlantBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin: 10px;
+  margin: 18px;
   color: black;
   min-width: 40vw;
   min-height: 75vh;
@@ -143,6 +159,7 @@ text-align: left;
 `;
 
 export const RecomandedCareBox=styled.div`
+width: 22vw;
 
 @media (max-width: 1600px) {
   width: 30vw;
@@ -159,7 +176,7 @@ margin-left:8vw;
 `;
 
 export const MyCareBox=styled.div`
-margin-left: 180px;
+
 
 @media (max-width: 1600px) {
   margin-left:6vw;
@@ -272,7 +289,8 @@ margin-right: 150px;
 export const Footer=styled.footer`
 display: flex;
 justify-content: center;
-margin-top: 8vh;
+margin-top: 3vh;
+margin-bottom:  2vh;
 
 p{
     margin-left: 20px;
@@ -292,6 +310,7 @@ font-weight: 600;
 font-family: 'Poppins', sans-serif;
 background-color: #9acbaf;
 
+
 @media (max-width: 1200px) {
   font-size: 1.2em;
   min-width: 20vw;
@@ -301,12 +320,13 @@ background-color: #9acbaf;
   opacity:0.3;
 }
 }
+
 `;
 
 export const YesNoButton=styled.button`
 
-  width: 80px;
-  border-radius: 10px;
+width: 80px;
+border-radius: 10px;
 border: solid 2px  #486454;
 color: #9c7a6d;
 font-size: 14px;
@@ -330,40 +350,46 @@ export const ErrorMessage = styled.p`
 `;
 
 
-export const Test = styled.img`
-height: 200px;
-width: 180px;
-   border-radius:0% 70% 50% 70%;
+export const EmptyGardenLeft=styled.img`
+  margin-left: -15vw;
+max-height: 86vh;
+  min-width: auto;
+  opacity: 0.6;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
- `;
 
-export const AAA = styled.img`
-height: 850px;
-width: auto;
-border-radius: 50% 0 0 40%;
-  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+ @media (max-width: 1600px) {
+  margin-left: -20vw;
+  }
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+ 
 `;
 
-export const PictureBox=styled.div`
+export const EmptyGardenRight=styled.img`
+   margin-right: -16vw;
+  max-height: 86vh;
+  min-width: auto;
+  opacity: 0.6;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 
-border-radius:0% 70% 50% 70%;
-box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-position: absolute;
-  top: 150px;
-  left: 40px;
+  @media (max-width: 1600px) {
+    margin-right: -20.5vw;
+  }
 
-`;
 
-export const PictureTest=styled.div`
-height: 800px;
-width: 180px;
-object-fit: cover;
-box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-position: absolute;
-  top: 120px;
-  left: 1455px;
-  border-radius: 70% 0 0 70%;
+  @media (max-width: 1200px) {
+    display: none;
+  }
 
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 
@@ -384,9 +410,8 @@ export default {
     Footer,
     YesNoButton,
     ErrorMessage,
-    Test,
-    AAA,
-    PictureBox,
-    PictureTest
-
+    EmptyGarden,
+    EmptyGardenRight,
+    EmptyGardenLeft,
+    EmptyGardenBox,
 };

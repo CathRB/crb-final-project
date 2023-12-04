@@ -3,9 +3,8 @@ import styled from "styled-components";
 export const Main = styled.main`
 background-color:#c0d4b4;
 max-width: 100vw;
-min-height: 100vh;
+min-height: 86vh;
 margin-top: 1.5vh;
-padding-bottom: 7vh;
 `;
 
 export const HeaderBox = styled.div`
@@ -17,6 +16,7 @@ h1{
  font-family: 'Poppins', sans-serif;
  margin-bottom: 4vh;
  color: #034925;
+ font-size: 3em;
 }
 
 input{
@@ -153,7 +153,8 @@ export const PlantBox = styled.div`
   }
 
 button{
-
+  margin-top: 2vh;
+    margin-bottom: 2vh;
 border-radius: 10px;
 border: solid 2px  #486454;
 color: #9c7a6d;
@@ -215,6 +216,7 @@ export const Footer = styled.footer`
 display: flex;
 justify-content: center;
 margin-top: 8vh;
+padding-bottom: 5vh;
 
 p{
   margin-left: 30px;
@@ -247,6 +249,7 @@ text-align: center;
 font-size: 1.7em;
 color: red;
 `;
+
 
 export default {
 Main,
