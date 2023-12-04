@@ -86,6 +86,7 @@ const handleDateWatering = (newValue) => {
         <DialogTitle sx={{ paddingBottom:0, color:"green"}}>Add my psersonal care settings</DialogTitle>
         <DialogContent>
            <TextField
+           color="success"
           sx={{marginBottom: 5}}
             autoFocus
             margin="dense"
@@ -102,8 +103,9 @@ const handleDateWatering = (newValue) => {
 
 <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="sunExposition">Sun exposition</InputLabel>
+        <InputLabel id="sunExposition" color="success">Sun exposition</InputLabel>
         <Select
+        color="success"
         sx={{marginBottom: 3}}
           labelId="sunExposition"
           id="sunExposition"
@@ -123,6 +125,7 @@ const handleDateWatering = (newValue) => {
 
 <TextField
 sx={{marginBottom: 3}}
+color="success"
             autoFocus
             margin="dense"
             id="wateringFrequency"
@@ -136,10 +139,12 @@ sx={{marginBottom: 3}}
             } />
             
   <LocalizationProvider dateAdapter={AdapterDayjs}>
-     <InputLabel id="lastWatering" 
-          >Last watering</InputLabel>
-        <DatePicker
-        sx={{marginBottom: 3}}
+           <DatePicker
+         label="Last watered"
+            sx={{marginBottom: 3, 
+            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { border: '3px solid green' }, 
+            "& .MuiInputLabel-root.Mui-focused": { color: "green" }, 
+               }}
         value={wateringDate}
         onChange={(newValue) => {handleDateWatering(newValue) }}
         />
@@ -147,6 +152,7 @@ sx={{marginBottom: 3}}
 
  <TextField
 sx={{marginBottom: 3}}
+color="success"
             autoFocus
             margin="dense"
             id="fertilizerName"
@@ -162,6 +168,7 @@ sx={{marginBottom: 3}}
 
 <TextField
 sx={{marginBottom: 5}}
+color="success"
             autoFocus
             margin="dense"
             id="fertilizerFrequency"
@@ -176,16 +183,20 @@ sx={{marginBottom: 5}}
              /> 
 
 <LocalizationProvider dateAdapter={AdapterDayjs}>
-     <InputLabel id="lastFertilizing" 
-          >Last fertilizer add:</InputLabel>
         <DatePicker
-        sx={{marginBottom: 3}}
+        label="Last fertilized"
+        sx={{marginBottom: 3, 
+          '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { border: '3px solid green' },
+          "& .MuiInputLabel-root.Mui-focused": { color: "green" }, 
+        }}
+
         value={fertilizingDate}
          onChange={(newValue) => {handleDateFertilizing(newValue) }}
         />
      </LocalizationProvider>
  
 <TextField
+color="success"
             autoFocus
             margin="dense"
             id="comments"

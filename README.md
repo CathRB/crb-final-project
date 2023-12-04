@@ -1,28 +1,61 @@
-# crb-final-project
+# My Garden (crb-final-project)
+
+## Summary
+
+This app is a plant browser and a user's plant library. Browser section can be use without registration and give you acces to plant informations from Trefle API. Logged user have acces to the special feature My Garden. In this section you can store plant, have access to plant information with recommended care and set your own plant data and care parameters. You also have acces to a task reminder for water and fertilizer.
+
+## Features
+-Plant Browser
+-Access to plant informations
+-Create your own library
+-Access to recommended care
+-Option to store personal data and care settings
+-Task reminder for water and fertilizer
 
 
-## Step 2: Backend
+## API
+- [Trefle](https://github.com/treflehq/trefle-api)
 
-add your dependnecies:  uuid, ...
+## Tech Stack
+- [HTML](https://developer.mozilla.org/en-US/docs/Glossary/HTML)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [React](https://reactwithhooks.netlify.app/)
+- [MongoDB](https://www.mongodb.com/fr-fr)
+- [Express.js](https://expressjs.com/)
+- [Node.js](https://nodejs.org/en)
 
+## Homepage
 
+This is the landing page where the website and features are described.
 
-## Step 3: Connect to mongo
-
-Handlers file?
-
-make a new db
-
-
-## Step 4: Frontend
-
- 
-add dependencies: 
-
-
-
-## Step 8: Start testing your API(s)
+<img src="./client/src/assets/homepage.png" width="200" height="auto">
 
 
+
+
+## Plant Browser
+
+When you first navigate to this page you get acces to the whole database of plants sorted in alphabetic order of common name. This is where you can search for a specific plant name and get acces to more information. Plants are display on thumbnails with common name, picture and scientific name. You can click on a plant to get additional information. When you're logged in you can pick-up plants and add them to your own library. 
+
+<img src="./client/src/assets/plantSearch1.png" width="200" height="auto">
+<img src="./client/src/assets/plantSearch2.png" width="200" height="auto">
+<img src="./client/src/assets/plantSearch3.png" width="200" height="auto">
+
+## My Garden
+
+This section is reserved to registered user. In this section you have access to your plant library stored in MongoDB. Displayed on screen you can see picture, general information and recommended care. You also have the option to add you own data about the plant (ex: location in the house, sun exposition, fertilizer name, comments, etc.). In this personnal care section you can also set the watering and fertilizing frequency as well as the last date those task were done. This set up the reminder icon on the top of the thumbnail that alert you when a task is due.  
+
+<img src="./client/src/assets/myGarden1.png" width="200" height="auto">
+<img src="./client/src/assets/myGarden2.png" width="200" height="auto">
+<img src="./client/src/assets/myGarden3.png" width="200" height="auto">
+
+
+## Log in / Sign up sections
+
+Those sections displayed log in and register forms for the user to log in or to create a new account.  
+
+<img src="./client/src/assets/login.png" width="200" height="auto">
+<img src="./client/src/assets/register.png" width="200" height="auto">
 
 

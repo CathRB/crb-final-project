@@ -46,7 +46,7 @@ const HomePage = () => {
                     <h2>My Garden</h2>
                     <PictureAndText>
                     <Warning>This section is available only with a valid account</Warning>
-                    <p>Create your own library of plants. Add plants you have or you would like to have. Get acces to recommanded cares and create your own settings. There is also a reminder option that let you know when it's time to  water or fertilize based on your settings.  </p>
+                    <p>Create your own library of plants. Add plants you have or you would like to have. Get acces to recommended cares and create your own settings. There is also a reminder option that let you know when it's time to  water or fertilize based on your settings.  </p>
                     <PictureBox>
                     <Image src={myGarden1} alt={"myGarden1"}/>
                     <Image src={myGarden2} alt={"myGarden2"}/>

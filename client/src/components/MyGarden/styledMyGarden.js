@@ -89,6 +89,7 @@ export const PlantBox = styled.div`
     max-width: 88vw;
   }
 
+
   span{
     font-weight: 600;
     font-size: 1.1em;
@@ -129,7 +130,7 @@ export const PlantPicture=styled.img`
   }
 
   @media (max-width: 600px) {
-   width: 88vw;
+   width: 87.5vw;
     border-radius: 20px
 }
 
@@ -252,6 +253,10 @@ margin-bottom: 3px;
   margin-right: 5vh;
     }
 
+    @media (max-width: 600px) {
+  margin-right: 1vh;
+    }
+
 img{
   height:30px;
   width: 30px;
@@ -280,9 +285,9 @@ margin-right: 150px;
   }
 
   @media (max-width: 600px) {
-    margin-right: 6vw;
+    margin-right: 3vw;
     margin-bottom: 1vh;
-    font-size: 0.8em;
+    font-size: 0.7em;
   }
 `;
 
@@ -314,6 +319,11 @@ background-color: #9acbaf;
 @media (max-width: 1200px) {
   font-size: 1.2em;
   min-width: 20vw;
+  }
+
+  @media (max-width: 1200px) {
+  font-size: 0.9em;
+
   }
 
 &:disabled{

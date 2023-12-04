@@ -35,7 +35,7 @@ const GetGardens = ({index, plant, setGardenId, setPlantIndex, handleClickOpen})
     const date = new Date()
     let dateMDY = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;  
     
-  
+ 
             
     return(
         <PlantBox>
@@ -98,10 +98,10 @@ const GetGardens = ({index, plant, setGardenId, setPlantIndex, handleClickOpen})
           <p><span>Location:</span> {plant.plantLocation}</p>
           <p><span>Sun exposition:</span> {plant.sunExposition} </p> 
           <p><span>Watering frequency: </span> {plant.wateringFrequency? (`each ${plant.wateringFrequency} day(s)`): (<></>) }</p>  
-          <p><span>Last watering:</span> {plant.lastWatering}</p> 
+          <p><span>Last watered:</span> {plant.lastWatering}</p> 
           <p><span>Fertilizer name: </span>{plant.fertilizerName}</p>
           <p><span>Fertilizer frequency:</span> {plant.fertilizerFrequency? (`each ${plant.fertilizerFrequency} day(s)`): (<></>) } </p>  
-          <p><span>Last fertilizer add: </span>{plant.lastFertilizing}</p> 
+          <p><span>Last fertilized: </span>{plant.lastFertilizing}</p> 
           <p><span>Comments: </span>{plant.comments}</p>
           </MyCareBox>
           </MiddleBox>

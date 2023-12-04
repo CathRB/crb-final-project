@@ -37,7 +37,6 @@ const [open, setOpen] = useState(false);
 const [gardenToDisplay, setGardenToDisplay] = useState(null);
 const {user, loggedInUser, errorMessage, setErrorMessage} = useContext(UserContext)
 
-
 const date = new Date()
 let dateMDY = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
